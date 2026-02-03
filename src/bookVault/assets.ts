@@ -22,6 +22,9 @@ export async function resolveInteractiveAsset(
   }
 
   if (!meta?.assets?.interactive) {
+    if (process.env.NODE_ENV !== "production") {
+      console.warn("Missing interactive asset", { slug, locale, format });
+    }
     return null;
   }
 

@@ -80,6 +80,8 @@
     "noAccessTitle": "Ingen åtkomst",
     "noAccessBody": "Du har inte åtkomst till den här interaktiva boken.",
     "goToBook": "Gå till boken",
-    "backToLibrary": "Tillbaka till biblioteket"
+    "backToLibrary": "Tillbaka till biblioteket",
+    "openInNewTab": "Öppna i ny flik",
+    "loading": "Laddar..."
   }
 }

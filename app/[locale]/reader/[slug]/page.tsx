@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import ReaderFrame from "../../../../components/ReaderFrame";
 import Topbar from "../../../../components/Topbar";
 import { sql } from "../../../../src/db/db";
 import { getMessages } from "../../../../src/i18n/getMessages";
@@ -100,13 +101,21 @@ export default async function ReaderPage({ params, searchParams }: ReaderPagePro
         <div>
           <h1 className="text-2xl font-semibold">{translate("reader.title")}</h1>
         </div>
-        <div className="aspect-[4/3] w-full overflow-hidden rounded border border-slate-200">
-          <iframe
-            src={iframeSrc}
-            title={translate("reader.title")}
-            className="h-full w-full"
-          />
+        <div className="flex flex-wrap items-center gap-3">
+          <a
+            className="text-sm text-slate-600 hover:text-slate-900"
+            href={iframeSrc}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {translate("reader.openInNewTab")}
+          </a>
         </div>
+        <ReaderFrame
+          src={iframeSrc}
+          title={translate("reader.title")}
+          loadingLabel={translate("reader.loading")}
+        />
       </main>
     </div>
   );
