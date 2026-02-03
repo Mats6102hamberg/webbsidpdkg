@@ -6,6 +6,7 @@
 - Implementerade Book Vault-integration med lokal och remote mode.
 - Skapade sidor for home, produkt och coming soon med locale-baserad routing.
 - Lade till LanguageSwitcher som behaller aktuell path vid sprakkifte.
+- Rensade oanvand import i Book Vault.
 
 ## Nya filer och komponenter
 - `app/[locale]/books/[slug]/page.tsx`
@@ -53,3 +54,5 @@
 ## Git commit-information
 - `3371b02` (step 0.7: outputFileTracingRoot)
 - `0dece5e` (i18n and book vault integration)
+- `87d4931` (update session summary and memory note)
+- `1766ec5` (chore: remove unused import)
