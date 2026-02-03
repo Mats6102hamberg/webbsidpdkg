@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "books": "Books",
+    "apps": "Apps",
+    "library": "Library",
+    "about": "About"
+  },
+  "home": {
+    "title": "Petanque DKG",
+    "subtitle": "The complete guide to petanque."
+  },
+  "product": {
+    "buy": "Buy",
+    "format": "Format",
+    "format_standard": "Standard",
+    "format_a5": "A5",
+    "type": "Type",
+    "type_print": "Print",
+    "type_ebook": "E-book",
+    "type_bundle": "Bundle",
+    "comingSoonLocaleTitle": "Coming soon",
+    "comingSoonLocaleBody": "This content is not available yet in your language.",
+    "switchToEnglish": "Switch to English",
+    "asset_ebook": "E-book",
+    "asset_interactive": "Interactive",
+    "asset_print": "Print",
+    "coverPlaceholder": "Cover coming soon"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong.",
+    "back": "Back",
+    "language": "Language"
+  },
+  "locales": {
+    "sv": "Swedish",
+    "en": "English",
+    "fr": "French",
+    "es": "Spanish",
+    "de": "German",
+    "nl": "Dutch",
+    "th": "Thai",
+    "da": "Danish",
+    "it": "Italian"
+  }
+}

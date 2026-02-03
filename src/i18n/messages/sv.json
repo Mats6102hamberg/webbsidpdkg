@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "books": "Bocker",
+    "apps": "Appar",
+    "library": "Bibliotek",
+    "about": "Om"
+  },
+  "home": {
+    "title": "Petanque DKG",
+    "subtitle": "Den kompletta guiden till petanque."
+  },
+  "product": {
+    "buy": "Kop",
+    "format": "Format",
+    "format_standard": "Standard",
+    "format_a5": "A5",
+    "type": "Typ",
+    "type_print": "Tryck",
+    "type_ebook": "E-bok",
+    "type_bundle": "Paket",
+    "comingSoonLocaleTitle": "Kommer snart",
+    "comingSoonLocaleBody": "Innehallet finns inte pa ditt sprak annu.",
+    "switchToEnglish": "Byt till engelska",
+    "asset_ebook": "E-bok",
+    "asset_interactive": "Interaktiv",
+    "asset_print": "Tryck",
+    "coverPlaceholder": "Omslag kommer snart"
+  },
+  "common": {
+    "loading": "Laddar...",
+    "error": "Nagot gick fel.",
+    "back": "Tillbaka",
+    "language": "Sprak"
+  },
+  "locales": {
+    "sv": "Svenska",
+    "en": "Engelska",
+    "fr": "Franska",
+    "es": "Spanska",
+    "de": "Tyska",
+    "nl": "Nederlandska",
+    "th": "Thailandska",
+    "da": "Danska",
+    "it": "Italienska"
+  }
+}
