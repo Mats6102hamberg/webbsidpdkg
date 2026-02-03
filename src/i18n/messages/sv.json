@@ -53,5 +53,19 @@
     "cancelTitle": "Köpet avbröts",
     "cancelBody": "Ingen betalning gjordes. Du kan försöka igen när du vill.",
     "tryAgain": "Försök igen"
+  },
+  "login": {
+    "title": "Logga in",
+    "subtitle": "Vi skickar en magisk länk för att komma åt ditt bibliotek.",
+    "emailLabel": "E-post",
+    "emailPlaceholder": "du@example.com",
+    "submit": "Skicka magisk länk",
+    "sent": "Kolla din e-post. En inloggningslänk har skickats."
+  },
+  "library": {
+    "title": "Ditt bibliotek",
+    "subtitle": "Dina köpta digitala paket visas här.",
+    "empty": "Du har inga köp ännu.",
+    "viewBook": "Visa"
   }
 }

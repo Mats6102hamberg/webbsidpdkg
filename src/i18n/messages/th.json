@@ -53,5 +53,19 @@
     "cancelTitle": "Checkout canceled",
     "cancelBody": "No payment was made. You can try again when you are ready.",
     "tryAgain": "Try again"
+  },
+  "login": {
+    "title": "Sign in",
+    "subtitle": "We will send you a magic link to access your library.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "submit": "Send magic link",
+    "sent": "Check your email. A login link has been sent."
+  },
+  "library": {
+    "title": "Your library",
+    "subtitle": "Your purchased digital bundles will appear here.",
+    "empty": "You have no purchases yet.",
+    "viewBook": "View"
   }
 }
