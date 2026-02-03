@@ -15,7 +15,8 @@
 - Stripe Phase 2: webhook-driven entitlements, magic link auth, og enkel Library sida.
 - Auth polish: invalid link-sida, logout, og product_type constraint.
 - Reader MVP: skyddad reader-sida og säker PDF-leverans via API.
-- Reader polish: loading overlay, open-in-new-tab, och dev-logging for saknad asset.
+- Reader polish: loading overlay, open-in-new-tab, og dev-logging for saknad asset.
+- E-book delivery: skyddad ebook via secure file route, bibliotekslankar och "du ager"-sektion.
 
 ## Nya filer och komponenter
 - `app/[locale]/books/[slug]/page.tsx`
@@ -65,6 +66,7 @@
 - User: `/[locale]/library` visar entitlements for inloggad e-post.
 - User: `/[locale]/auth/verify` visar felmeddelande for ogiltig/utgangen länk.
 - User: `/[locale]/reader/[slug]` visar interaktiv PDF om entitlement finns.
+- User: e-bok kan öppnas eller laddas ner via secure file route.
 - Admin: Stripe webhook skriver entitlements vid checkout.session.completed.
 
 ## Tekniska losningar och beslut
@@ -75,6 +77,7 @@
 - API svarar med stabil `code` for enklare UI-hantering.
 - Magic link auth anvander login_tokens med hashade tokens og httpOnly session cookie.
 - Reader API validerar session og entitlement innan PDF streamas/proxas.
+- Ebook levereras via samma secure route med inline/attachment.
 
 ## Environment variables
 - `BOOK_VAULT_MODE` (local | remote, default local)
@@ -102,7 +105,8 @@
 ## Risker eller begransningar
 - Webhook kravs for att skapa entitlements.
 - Magic link skickas bara till console i dev.
-- Reader kräver korrekt interactive.pdf pa Book Vault.
+- Reader kravar korrekt interactive.pdf pa Book Vault.
+- Ebook kravar korrekt ebook.pdf pa Book Vault.
 
 ## Git commit-information
 - `3371b02` (step 0.7: outputFileTracingRoot)
@@ -120,3 +124,4 @@
 - `2e08f39` (polish: invalid magic link handling + logout + product_type constraint)
 - `eb13f3c` (feat: protected reader + secure pdf delivery)
 - `51a401c` (polish: reader loading + dev missing-asset logs + open in new tab)
+- `7adf279` (feat: protected ebook delivery)
