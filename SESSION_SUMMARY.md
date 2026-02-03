@@ -3,16 +3,17 @@
 ## Oversikt av vad som implementerades
 - Lade till outputFileTracingRoot for att undvika workspace-root-varning.
 - Byggde i18n-struktur med messages, getMessages och enkel translator.
-- Implementerade Book Vault-integration med lokal och remote mode.
-- Skapade sidor for home, produkt och coming soon med locale-baserad routing.
+- Implementerade Book Vault-integration med lokal og remote mode.
+- Skapade sidor for home, produkt og coming soon med locale-baserad routing.
 - Lade till LanguageSwitcher som behaller aktuell path vid sprakkifte.
-- Polish: svenska strangar, robust LanguageSwitcher, format-fallback, och Topbar-komponent.
-- UX: visade upplaga pa produktsidan och lade A5-coming-soon microcopy.
-- Stripe Phase 1: checkout API, success/cancel-sidor, och aktiv CTA for digitalt paket.
+- Polish: svenska strangar, robust LanguageSwitcher, format-fallback, og Topbar-komponent.
+- UX: visade upplaga pa produktsidan og lade A5-coming-soon microcopy.
+- Stripe Phase 1: checkout API, success/cancel-sidor, og aktiv CTA for digitalt paket.
 - Stripe hardening: async headers-origin, referer fallback, apiVersion, og try/catch.
 - Dev logging for Stripe errors i checkout.
 - Stripe API svarar med stabila felkoder.
-- Stripe Phase 2: webhook-driven entitlements, magic link auth, och enkel Library sida.
+- Stripe Phase 2: webhook-driven entitlements, magic link auth, og enkel Library sida.
+- Auth polish: invalid link-sida, logout, og product_type constraint.
 
 ## Nya filer och komponenter
 - `app/[locale]/books/[slug]/page.tsx`
@@ -21,14 +22,17 @@
 - `app/[locale]/checkout/cancel/page.tsx`
 - `app/[locale]/login/page.tsx`
 - `app/[locale]/library/page.tsx`
+- `app/[locale]/auth/verify/page.tsx`
 - `app/api/stripe/checkout/route.ts`
 - `app/api/stripe/webhook/route.ts`
 - `app/api/auth/request-link/route.ts`
 - `app/api/auth/verify/route.ts`
+- `app/api/auth/logout/route.ts`
 - `components/LanguageSwitcher.tsx`
 - `components/Topbar.tsx`
 - `components/BuyBundleButton.tsx`
 - `components/LoginForm.tsx`
+- `components/LogoutButton.tsx`
 - `src/bookVault/bookVault.ts`
 - `src/i18n/getMessages.ts`
 - `src/i18n/t.ts`
@@ -49,10 +53,11 @@
 
 ## Hur systemet fungerar (user + admin)
 - User: `/[locale]` visar startsida med locale-baserade texter och lank till bok.
-- User: `/[locale]/books/[slug]` laser Book Vault meta och renderar produktdata samt aktivt Stripe CTA.
-- User: `/[locale]/checkout/success` och `/[locale]/checkout/cancel` visar checkout-resultat.
+- User: `/[locale]/books/[slug]` laser Book Vault meta og renderar produktdata samt aktivt Stripe CTA.
+- User: `/[locale]/checkout/success` og `/[locale]/checkout/cancel` visar checkout-resultat.
 - User: `/[locale]/login` visar magic link-formular.
 - User: `/[locale]/library` visar entitlements for inloggad e-post.
+- User: `/[locale]/auth/verify` visar felmeddelande for ogiltig/utgangen länk.
 - Admin: Stripe webhook skriver entitlements vid checkout.session.completed.
 
 ## Tekniska losningar och beslut
@@ -103,3 +108,4 @@
 - `17795bc` (chore: log stripe checkout errors in dev)
 - `e3ed659` (feat: add stripe error codes)
 - `6ca7939` (feat: stripe webhook + magic link auth)
+- `2e08f39` (polish: invalid magic link handling + logout + product_type constraint)
