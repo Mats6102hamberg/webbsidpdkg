@@ -1,36 +1,55 @@
 # SESSION SUMMARY
 
 ## Oversikt av vad som implementerades
-- Uppgraderade Next.js till senaste 15.x patch-version och uppdaterade lockfil.
-- Lade till root-redirect `/` -> `/sv` via App Router.
-- La in minimal i18n-skelett med `supportedLocales.ts`.
-- Uppdaterade README med minsta dev-instruktioner.
-- Korde `npm audit fix` (utan `--force`).
+- Lade till outputFileTracingRoot for att undvika workspace-root-varning.
+- Byggde i18n-struktur med messages, getMessages och enkel translator.
+- Implementerade Book Vault-integration med lokal och remote mode.
+- Skapade sidor for home, produkt och coming soon med locale-baserad routing.
+- Lade till LanguageSwitcher som behaller aktuell path vid sprakkifte.
 
 ## Nya filer och komponenter
-- `app/page.tsx`
-- `src/i18n/supportedLocales.ts`
-- `package-lock.json`
+- `app/[locale]/books/[slug]/page.tsx`
+- `app/[locale]/coming-soon/page.tsx`
+- `components/LanguageSwitcher.tsx`
+- `src/bookVault/bookVault.ts`
+- `src/i18n/getMessages.ts`
+- `src/i18n/t.ts`
+- `src/i18n/messages/en.json`
+- `src/i18n/messages/sv.json`
+- `src/i18n/messages/fr.json`
+- `src/i18n/messages/es.json`
+- `src/i18n/messages/de.json`
+- `src/i18n/messages/nl.json`
+- `src/i18n/messages/th.json`
+- `src/i18n/messages/da.json`
+- `src/i18n/messages/it.json`
 
 ## Hur systemet fungerar (user + admin)
-- Ej dokumenterat.
+- User: `/[locale]` visar startsida med locale-baserade texter och lank till bok.
+- User: `/[locale]/books/[slug]` laser Book Vault meta och renderar produktdata.
+- User: `/[locale]/coming-soon` visar fallback om locale- eller bokdata saknas.
 
 ## Tekniska losningar och beslut
-- Root-redirect implementerad med `redirect()` i App Router.
-- `SUPPORTED_LOCALES` och `DEFAULT_LOCALE` ligger i `src/i18n/supportedLocales.ts`.
+- I18n laddas via dynamisk import av `messages/<locale>.json`.
+- Fallback till `en` om locale eller bokmetadata saknas.
+- Book Vault har local och remote mode styrt via env vars.
 
 ## Environment variables
-- Ej dokumenterat.
+- `BOOK_VAULT_MODE` (local | remote, default local)
+- `BOOK_VAULT_PATH` (lokal filsystemroot)
+- `BOOK_VAULT_BASE_URL` (remote bas-URL)
+- `DEFAULT_LOCALE` (dokumenterad som en, konst i kod)
 
 ## Nasta steg / TODO
-- Eventuell audit-uppgradering (moderat svarbarhet i Next.js kvarstar, se `npm audit`).
-- Koppla till Vercel (manuellt).
+- Om onskat: uppdatera texter i icke-engelska messagefiler.
+- Om onskat: lagg till sample Book Vault data for lokalt test.
 
 ## Vad som INTE gjordes (och varfor)
-- `npm audit fix --force` korde inte eftersom det innebar breaking change till Next 16.
+- Ingen faktisk Book Vault provider/hosting ar kopplad (placeholder remote mode).
 
 ## Risker eller begransningar
-- `npm audit` rapporterar en moderat svarbarhet i Next.js (kraver breaking change for full fix).
+- Remote assets visas endast om `BOOK_VAULT_BASE_URL` ar satt och filer finns.
 
 ## Git commit-information
-- Senaste commit (funktionella andringar): `b3f681c` (step 0.6: patch next + root redirect + locales scaffold)
+- `3371b02` (step 0.7: outputFileTracingRoot)
+- `0dece5e` (i18n and book vault integration)
