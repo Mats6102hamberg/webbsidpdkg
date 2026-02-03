@@ -21,6 +21,7 @@
 - UX polish: go-to-library button och reader e-bok download.
 - Stripe subscription: checkout for Boule Apps, apps-sida, och app_access-entitlements via webhook.
 - Stripe subscription: status-normalisering for app_access samt library-sektion for app-åtkomst.
+- Fix: Apps-sida typning uppdaterad for Next 15 PageProps (params/searchParams som Promise).
 
 ## Nya filer och komponenter
 - `app/[locale]/books/[slug]/page.tsx`

@@ -16,12 +16,13 @@ import { getSessionCookieName, verifySession } from "../../../src/auth/session";
 const AUTH_SECRET = process.env.AUTH_SECRET;
 
 type AppsPageProps = {
-  params: { locale: string };
-  searchParams?: { sub?: string };
+  params: Promise<{ locale: string }>;
+  searchParams?: Promise<{ sub?: string }>;
 };
 
 export default async function AppsPage({ params, searchParams }: AppsPageProps) {
-  const { locale } = params;
+  const { locale } = await params;
+  const query = searchParams ? await searchParams : undefined;
 
   if (!isSupportedLocale(locale)) {
     redirect(`/${DEFAULT_LOCALE}`);
@@ -53,7 +54,7 @@ export default async function AppsPage({ params, searchParams }: AppsPageProps) 
   }
 
   const isActive = status === "active" || status === "trialing";
-  const subState = searchParams?.sub ?? "";
+  const subState = query?.sub ?? "";
 
   return (
     <div className="min-h-screen bg-white text-slate-900">
