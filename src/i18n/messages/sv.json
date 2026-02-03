@@ -131,6 +131,7 @@
     "subscribedTitle": "Prenumerationen är aktiv",
     "subscribedBody": "Du har redan tillgång till Boule Apps.",
     "loginRequired": "Logga in för att starta en prenumeration.",
+    "trustLine": "Säkra betalningar via Stripe • Avsluta när du vill",
     "value1Title": "Träningsplaner",
     "value1Body": "Bygg rutiner, matchförberedelser och veckofokus.",
     "value2Title": "Klubbhantering",

@@ -55,7 +55,7 @@ export default function StartSubscriptionButton({
         type="button"
         onClick={handleClick}
         disabled={isLoading}
-        className="w-fit rounded bg-slate-900 px-4 py-2 text-sm font-medium text-white disabled:opacity-60"
+        className="w-fit rounded-full bg-slate-900 px-5 py-2.5 text-base font-semibold text-white disabled:opacity-60"
       >
         {isLoading ? loadingLabel : label}
       </button>

@@ -138,6 +138,9 @@ export default async function AppsPage({ params, searchParams }: AppsPageProps) 
                     loadingLabel={translate("common.loading")}
                     errorLabel={translate("common.error")}
                   />
+                  <p className="mt-3 text-xs text-slate-500">
+                    🔒 {translate("apps.trustLine")}
+                  </p>
                 </div>
               )}
 

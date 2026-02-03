@@ -131,6 +131,7 @@
     "subscribedTitle": "Subscription active",
     "subscribedBody": "You already have access to Boule Apps.",
     "loginRequired": "Sign in to start a subscription.",
+    "trustLine": "Secure payments via Stripe • Cancel anytime",
     "value1Title": "Training plans",
     "value1Body": "Build routines, match prep, and weekly focus sessions.",
     "value2Title": "Club management",
