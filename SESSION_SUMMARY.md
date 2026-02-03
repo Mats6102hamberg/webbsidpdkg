@@ -22,6 +22,7 @@
 - Stripe subscription: checkout for Boule Apps, apps-sida, och app_access-entitlements via webhook.
 - Stripe subscription: status-normalisering for app_access samt library-sektion for app-åtkomst.
 - Fix: Apps-sida typning uppdaterad for Next 15 PageProps (params/searchParams som Promise).
+- Fix: Apps-sida typning uppdaterad till minimal Next 15 checklista (params som Promise).
 
 ## Nya filer och komponenter
 - `app/[locale]/books/[slug]/page.tsx`
