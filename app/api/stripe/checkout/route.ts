@@ -8,10 +8,20 @@ import {
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const priceId = process.env.STRIPE_PRICE_ID_BUNDLE;
 
-function getOrigin() {
-  const headerList = headers();
+async function getOrigin() {
+  const headerList = await headers();
   const origin = headerList.get("origin");
   if (origin) return origin;
+
+  const referer = headerList.get("referer");
+  if (referer) {
+    try {
+      const url = new URL(referer);
+      return `${url.protocol}//${url.host}`;
+    } catch {
+      // ignore invalid referer
+    }
+  }
 
   const host = headerList.get("x-forwarded-host") ?? headerList.get("host");
   const proto = headerList.get("x-forwarded-proto") ?? "https";
@@ -54,24 +64,31 @@ export async function POST(req: Request) {
     return errorResponse("Ogiltigt format.");
   }
 
-  const origin = getOrigin();
+  const origin = await getOrigin();
   if (!origin) {
     return errorResponse("Origin saknas.", 500);
   }
 
-  const stripe = new Stripe(stripeSecretKey);
-
-  const session = await stripe.checkout.sessions.create({
-    mode: "payment",
-    line_items: [{ price: priceId, quantity: 1 }],
-    success_url: `${origin}/${locale}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${origin}/${locale}/checkout/cancel`,
-    metadata: {
-      slug,
-      locale: locale || DEFAULT_LOCALE,
-      format
-    }
+  const stripe = new Stripe(stripeSecretKey, {
+    apiVersion: "2024-06-20"
   });
+
+  let session;
+  try {
+    session = await stripe.checkout.sessions.create({
+      mode: "payment",
+      line_items: [{ price: priceId, quantity: 1 }],
+      success_url: `${origin}/${locale}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}/${locale}/checkout/cancel`,
+      metadata: {
+        slug,
+        locale: locale || DEFAULT_LOCALE,
+        format
+      }
+    });
+  } catch {
+    return errorResponse("Stripe kunde inte skapa checkout-session.", 500);
+  }
 
   return Response.json({ url: session.url });
 }
