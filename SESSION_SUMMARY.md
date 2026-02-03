@@ -11,6 +11,7 @@
 - Stripe Phase 1: checkout API, success/cancel-sidor, och aktiv CTA for digitalt paket.
 - Stripe hardening: async headers-origin, referer fallback, apiVersion, och try/catch.
 - Dev logging for Stripe errors i checkout.
+- Stripe API svarar med stabila felkoder.
 
 ## Nya filer och komponenter
 - `app/[locale]/books/[slug]/page.tsx`
@@ -45,6 +46,7 @@
 - Fallback till `en` om locale eller bokmetadata saknas.
 - Book Vault har local och remote mode styrt via env vars.
 - Stripe Checkout skapas via API route som validerar slug/locale/format och hanterar fel.
+- API svarar med stabil `code` for enklare UI-hantering.
 
 ## Environment variables
 - `BOOK_VAULT_MODE` (local | remote, default local)
@@ -78,3 +80,4 @@
 - `79726e4` (feat: stripe checkout phase 1)
 - `5fe34ea` (fix: stripe checkout origin and error handling)
 - `17795bc` (chore: log stripe checkout errors in dev)
+- `e3ed659` (feat: add stripe error codes)
