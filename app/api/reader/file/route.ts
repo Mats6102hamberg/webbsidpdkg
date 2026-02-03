@@ -85,7 +85,7 @@ export async function GET(req: Request) {
       await stat(resolved.path);
       headers.set("Content-Type", "application/pdf");
       const fileStream = createReadStream(resolved.path);
-      const body = Readable.toWeb(fileStream);
+      const body = Readable.toWeb(fileStream) as ReadableStream<Uint8Array>;
       return new Response(body, { headers });
     }
 

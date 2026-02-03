@@ -29,7 +29,7 @@ export async function resolveAsset(
 
   const fallbackAssetName = meta?.assets?.[asset];
 
-  if (!fallbackAssetName) {
+  if (!fallbackAssetName || !meta) {
     if (process.env.NODE_ENV !== "production") {
       const label = asset === "ebook" ? "Missing ebook asset" : "Missing interactive asset";
       console.warn(label, { slug, locale, format });

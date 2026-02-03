@@ -10,13 +10,13 @@ import {
 } from "../../../src/i18n/supportedLocales";
 
 type ComingSoonPageProps = {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 };
 
 export default async function ComingSoonPage({
   params
 }: ComingSoonPageProps) {
-  const { locale } = params;
+  const { locale } = await params;
 
   if (!isSupportedLocale(locale)) {
     redirect(`/${DEFAULT_LOCALE}`);

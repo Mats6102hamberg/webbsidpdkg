@@ -20,8 +20,8 @@ import {
 import { getSessionCookieName, verifySession } from "../../../../src/auth/session";
 
 type BookPageProps = {
-  params: { locale: string; slug: string };
-  searchParams?: { format?: string };
+  params: Promise<{ locale: string; slug: string }>;
+  searchParams?: Promise<{ format?: string }>;
 };
 
 function normalizeFormat(format?: string): BookFormat {
@@ -42,7 +42,8 @@ export default async function BookPage({
   params,
   searchParams
 }: BookPageProps) {
-  const { locale, slug } = params;
+  const { locale, slug } = await params;
+  const query = searchParams ? await searchParams : undefined;
 
   if (!isSupportedLocale(locale)) {
     redirect(`/${DEFAULT_LOCALE}`);
@@ -75,7 +76,7 @@ export default async function BookPage({
     }
   }
 
-  let selectedFormat = normalizeFormat(searchParams?.format);
+  let selectedFormat = normalizeFormat(query?.format);
   let meta = await getBookMeta(slug, locale, selectedFormat);
 
   if (!meta && selectedFormat === "a5") {

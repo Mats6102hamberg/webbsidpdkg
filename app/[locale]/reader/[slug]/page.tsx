@@ -16,12 +16,13 @@ import { getSessionCookieName, verifySession } from "../../../../src/auth/sessio
 const AUTH_SECRET = process.env.AUTH_SECRET;
 
 type ReaderPageProps = {
-  params: { locale: string; slug: string };
-  searchParams?: { format?: string };
+  params: Promise<{ locale: string; slug: string }>;
+  searchParams?: Promise<{ format?: string }>;
 };
 
 export default async function ReaderPage({ params, searchParams }: ReaderPageProps) {
-  const { locale, slug } = params;
+  const { locale, slug } = await params;
+  const query = searchParams ? await searchParams : undefined;
 
   if (!isSupportedLocale(locale)) {
     redirect(`/${DEFAULT_LOCALE}`);
@@ -81,7 +82,7 @@ export default async function ReaderPage({ params, searchParams }: ReaderPagePro
     );
   }
 
-  const format = searchParams?.format === "a5" ? "a5" : "standard";
+  const format = query?.format === "a5" ? "a5" : "standard";
   const iframeSrc = `/api/reader/file?slug=${encodeURIComponent(slug)}&locale=${encodeURIComponent(
     locale
   )}&format=${encodeURIComponent(format)}&asset=interactive`;

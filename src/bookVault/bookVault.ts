@@ -107,7 +107,7 @@ export async function listAvailableLocales(slug: string): Promise<string[]> {
     })
   );
 
-  return checks.filter((locale): locale is string => !!locale);
+  return checks.filter(locale => locale !== null) as string[];
 }
 
 export async function listAvailableFormats(

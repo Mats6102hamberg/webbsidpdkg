@@ -8,11 +8,11 @@ import {
 } from "../../../src/i18n/supportedLocales";
 
 type LoginPageProps = {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 };
 
 export default async function LoginPage({ params }: LoginPageProps) {
-  const { locale } = params;
+  const { locale } = await params;
 
   if (!isSupportedLocale(locale)) {
     redirect(`/${DEFAULT_LOCALE}`);

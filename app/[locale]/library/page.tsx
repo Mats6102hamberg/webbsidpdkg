@@ -16,11 +16,11 @@ import { getSessionCookieName, verifySession } from "../../../src/auth/session";
 const AUTH_SECRET = process.env.AUTH_SECRET;
 
 type LibraryPageProps = {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 };
 
 export default async function LibraryPage({ params }: LibraryPageProps) {
-  const { locale } = params;
+  const { locale } = await params;
 
   if (!isSupportedLocale(locale)) {
     redirect(`/${DEFAULT_LOCALE}`);
