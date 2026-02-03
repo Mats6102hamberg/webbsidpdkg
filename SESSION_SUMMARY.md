@@ -139,3 +139,4 @@
 - `0e2d393` (ux: library CTA + format badge + reader ebook link)
 - `d6346d2` (ux: library button CTA + reader ebook download)
 - `490e428` (feat: app subscription checkout + webhook entitlements)
+- `2d1a0c9` (fix: apps page PageProps typing)
