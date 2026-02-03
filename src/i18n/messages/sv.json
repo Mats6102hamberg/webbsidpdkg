@@ -111,6 +111,12 @@
     "startSubscription": "Starta prenumeration",
     "subscribedTitle": "Prenumerationen är aktiv",
     "subscribedBody": "Du har redan tillgång till Boule Apps.",
-    "loginRequired": "Logga in för att starta en prenumeration."
+    "loginRequired": "Logga in för att starta en prenumeration.",
+    "value1Title": "Träningsplaner",
+    "value1Body": "Bygg rutiner, matchförberedelser och veckofokus.",
+    "value2Title": "Klubbhantering",
+    "value2Body": "Samla medlemmar, event och resultat på ett ställe.",
+    "value3Title": "Säsongsöversikt",
+    "value3Body": "Följ mål, form och tävlingskalender."
   }
 }

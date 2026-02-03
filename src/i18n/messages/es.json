@@ -111,6 +111,12 @@
     "startSubscription": "Start subscription",
     "subscribedTitle": "Subscription active",
     "subscribedBody": "You already have access to Boule Apps.",
-    "loginRequired": "Sign in to start a subscription."
+    "loginRequired": "Sign in to start a subscription.",
+    "value1Title": "Training plans",
+    "value1Body": "Build routines, match prep, and weekly focus sessions.",
+    "value2Title": "Club management",
+    "value2Body": "Keep members, events, and results in one place.",
+    "value3Title": "Season overview",
+    "value3Body": "Track goals, readiness, and competition schedules."
   }
 }

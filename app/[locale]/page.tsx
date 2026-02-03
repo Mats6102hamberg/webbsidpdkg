@@ -118,8 +118,16 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
             </div>
 
             <div className="flex justify-center lg:justify-end">
-              <div className="w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-5 shadow-lg">
-                <div className="aspect-[3/4] w-full rounded-xl border border-dashed border-slate-300 bg-slate-100" />
+              <div className="relative w-full max-w-sm rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-[0_20px_50px_-30px_rgba(15,23,42,0.4)]">
+                <div className="absolute right-5 top-5 rounded-full border border-slate-200 bg-white px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-slate-500">
+                  DKG
+                </div>
+                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl border border-slate-200 bg-gradient-to-br from-slate-100 via-white to-slate-200">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(148,163,184,0.35),_transparent_55%)]" />
+                  <div className="absolute bottom-4 left-4 rounded-full bg-white/80 px-3 py-1 text-[11px] font-semibold text-slate-700 shadow-sm">
+                    {translate("product.format_standard")}
+                  </div>
+                </div>
                 <div className="mt-4">
                   <p className="text-sm font-semibold text-slate-900">{bookTitle}</p>
                   <p className="mt-1 text-xs text-slate-600">{bookSubtitle}</p>

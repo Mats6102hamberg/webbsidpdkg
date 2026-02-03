@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import Container from "../../../components/Container";
+import SiteHeader from "../../../components/SiteHeader";
 import StartSubscriptionButton from "../../../components/StartSubscriptionButton";
-import Topbar from "../../../components/Topbar";
 import { sql } from "../../../src/db/db";
 import { getMessages } from "../../../src/i18n/getMessages";
 import { t } from "../../../src/i18n/t";
@@ -56,59 +57,144 @@ export default async function AppsPage({ params, searchParams }: AppsPageProps) 
   const isActive = status === "active" || status === "trialing";
   const subState = query?.state ?? "";
 
+  const navItems = [
+    { key: translate("nav.books"), href: `/${locale}/books/petanque-dkg` },
+    { key: translate("nav.apps"), href: `/${locale}/apps` },
+    { key: translate("nav.library"), href: `/${locale}/library` },
+    { key: translate("nav.about"), href: `/${locale}/coming-soon` }
+  ];
+
   return (
-    <div className="min-h-screen bg-white text-slate-900">
-      <Topbar
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-white text-slate-900">
+      <SiteHeader
         locale={locale}
-        backHref={`/${locale}`}
-        backLabel={translate("common.back")}
+        brand={translate("home.title")}
+        navItems={navItems}
         languageLabel={translate("common.language")}
-        fallbackLocale={DEFAULT_LOCALE}
         options={options}
+        fallbackLocale={DEFAULT_LOCALE}
       />
 
-      <main className="mx-auto flex max-w-3xl flex-col gap-6 px-6 py-12">
-        <div>
-          <h1 className="text-2xl font-semibold">{translate("apps.title")}</h1>
-          <p className="mt-2 text-slate-600">{translate("apps.subtitle")}</p>
-        </div>
+      <main className="py-12">
+        <Container>
+          <section className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="flex flex-col gap-6">
+              <div>
+                <h1 className="text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">
+                  {translate("apps.title")}
+                </h1>
+                <p className="mt-3 max-w-xl text-base text-slate-600 sm:text-lg">
+                  {translate("apps.subtitle")}
+                </p>
+              </div>
 
-        {subState === "success" ? (
-          <p className="rounded border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm text-emerald-800">
-            {translate("apps.subscribedTitle")}
-          </p>
-        ) : null}
+              {subState === "success" ? (
+                <p className="w-fit rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-xs font-semibold text-emerald-800">
+                  {translate("apps.subscribedTitle")}
+                </p>
+              ) : null}
 
-        {subState === "cancel" ? (
-          <p className="rounded border border-amber-200 bg-amber-50 px-4 py-2 text-sm text-amber-800">
-            {translate("checkout.cancelBody")}
-          </p>
-        ) : null}
+              {subState === "cancel" ? (
+                <p className="w-fit rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-xs font-semibold text-amber-800">
+                  {translate("checkout.cancelBody")}
+                </p>
+              ) : null}
 
-        {!email ? (
-          <div className="rounded border border-slate-200 px-4 py-4">
-            <p className="text-sm text-slate-700">{translate("apps.loginRequired")}</p>
-            <Link className="mt-3 inline-flex text-sm text-slate-700 hover:text-slate-900" href={`/${locale}/login`}>
-              {translate("login.title")}
-            </Link>
-          </div>
-        ) : isActive ? (
-          <div className="rounded border border-emerald-200 bg-emerald-50 px-4 py-4">
-            <h2 className="text-sm font-semibold text-emerald-900">
-              {translate("apps.subscribedTitle")}
-            </h2>
-            <p className="mt-1 text-sm text-emerald-800">{translate("apps.subscribedBody")}</p>
-          </div>
-        ) : (
-          <div className="rounded border border-slate-200 px-4 py-4">
-            <StartSubscriptionButton
-              locale={locale}
-              label={translate("apps.startSubscription")}
-              loadingLabel={translate("common.loading")}
-              errorLabel={translate("common.error")}
-            />
-          </div>
-        )}
+              {!email ? (
+                <div className="rounded-xl border border-slate-200 bg-white/80 p-5 shadow-sm">
+                  <p className="text-sm text-slate-700">
+                    {translate("apps.loginRequired")}
+                  </p>
+                  <Link
+                    className="mt-4 inline-flex rounded-full border border-slate-300 px-5 py-2 text-sm font-semibold text-slate-800"
+                    href={`/${locale}/login`}
+                  >
+                    {translate("home.secondaryCtaLogin")}
+                  </Link>
+                </div>
+              ) : isActive ? (
+                <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-5 shadow-sm">
+                  <h2 className="text-sm font-semibold text-emerald-900">
+                    {translate("apps.subscribedTitle")}
+                  </h2>
+                  <p className="mt-2 text-sm text-emerald-800">
+                    {translate("apps.subscribedBody")}
+                  </p>
+                </div>
+              ) : (
+                <div className="rounded-xl border border-slate-200 bg-white/80 p-5 shadow-sm">
+                  <StartSubscriptionButton
+                    locale={locale}
+                    label={translate("apps.startSubscription")}
+                    loadingLabel={translate("common.loading")}
+                    errorLabel={translate("common.error")}
+                  />
+                </div>
+              )}
+
+              <div className="grid gap-4 sm:grid-cols-3">
+                <div className="rounded-xl border border-slate-200 bg-white/80 p-4 shadow-sm">
+                  <h3 className="text-sm font-semibold text-slate-900">
+                    {translate("apps.value1Title")}
+                  </h3>
+                  <p className="mt-2 text-xs text-slate-600">
+                    {translate("apps.value1Body")}
+                  </p>
+                </div>
+                <div className="rounded-xl border border-slate-200 bg-white/80 p-4 shadow-sm">
+                  <h3 className="text-sm font-semibold text-slate-900">
+                    {translate("apps.value2Title")}
+                  </h3>
+                  <p className="mt-2 text-xs text-slate-600">
+                    {translate("apps.value2Body")}
+                  </p>
+                </div>
+                <div className="rounded-xl border border-slate-200 bg-white/80 p-4 shadow-sm">
+                  <h3 className="text-sm font-semibold text-slate-900">
+                    {translate("apps.value3Title")}
+                  </h3>
+                  <p className="mt-2 text-xs text-slate-600">
+                    {translate("apps.value3Body")}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex justify-center lg:justify-end">
+              <div className="relative w-full max-w-sm rounded-2xl border border-slate-200 bg-white/90 p-6 shadow-[0_20px_50px_-30px_rgba(15,23,42,0.4)]">
+                <div className="absolute right-5 top-5 rounded-full border border-slate-200 bg-white px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-slate-500">
+                  Apps
+                </div>
+                <div className="flex flex-col gap-4">
+                  <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                      {translate("apps.value1Title")}
+                    </p>
+                    <p className="mt-2 text-sm font-semibold text-slate-900">
+                      {translate("apps.value1Body")}
+                    </p>
+                  </div>
+                  <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                      {translate("apps.value2Title")}
+                    </p>
+                    <p className="mt-2 text-sm font-semibold text-slate-900">
+                      {translate("apps.value2Body")}
+                    </p>
+                  </div>
+                  <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                      {translate("apps.value3Title")}
+                    </p>
+                    <p className="mt-2 text-sm font-semibold text-slate-900">
+                      {translate("apps.value3Body")}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </Container>
       </main>
     </div>
   );
