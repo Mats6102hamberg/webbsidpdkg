@@ -27,7 +27,10 @@
     "coverPlaceholder": "Cover coming soon",
     "a5ComingSoonNote": "A5 is coming soon.",
     "editionLabel": "Edition",
-    "buyBundle": "Buy digital bundle"
+    "buyBundle": "Buy digital bundle",
+    "youOwnThis": "You own this book",
+    "openEbook": "Open e-book",
+    "downloadEbook": "Download e-book"
   },
   "common": {
     "loading": "Loading...",
@@ -66,7 +69,10 @@
     "title": "Your library",
     "subtitle": "Your purchased digital bundles will appear here.",
     "empty": "You have no purchases yet.",
-    "viewBook": "View"
+    "viewBook": "View",
+    "openEbook": "Open e-book",
+    "downloadEbook": "Download e-book",
+    "readInteractive": "Read interactive"
   },
   "auth": {
     "invalidLinkTitle": "Link expired or invalid",

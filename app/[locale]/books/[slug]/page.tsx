@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import BuyBundleButton from "../../../../components/BuyBundleButton";
 import Topbar from "../../../../components/Topbar";
@@ -8,6 +9,7 @@ import {
   listAvailableFormats,
   type BookFormat
 } from "../../../../src/bookVault/bookVault";
+import { sql } from "../../../../src/db/db";
 import { getMessages } from "../../../../src/i18n/getMessages";
 import { t } from "../../../../src/i18n/t";
 import {
@@ -15,6 +17,7 @@ import {
   SUPPORTED_LOCALES,
   isSupportedLocale
 } from "../../../../src/i18n/supportedLocales";
+import { getSessionCookieName, verifySession } from "../../../../src/auth/session";
 
 type BookPageProps = {
   params: { locale: string; slug: string };
@@ -52,6 +55,25 @@ export default async function BookPage({
     value,
     label: translate(`locales.${value}`)
   }));
+
+  let isEntitled = false;
+  const authSecret = process.env.AUTH_SECRET;
+  if (authSecret) {
+    const cookieStore = await cookies();
+    const session = cookieStore.get(getSessionCookieName())?.value ?? "";
+    const email = session ? verifySession(session, authSecret) : null;
+    if (email) {
+      const entitlement = await sql`
+        SELECT id
+        FROM entitlements
+        WHERE user_email = ${email}
+          AND slug = ${slug}
+          AND product_type = 'bundle'
+        LIMIT 1
+      `;
+      isEntitled = entitlement.rows.length > 0;
+    }
+  }
 
   let selectedFormat = normalizeFormat(searchParams?.format);
   let meta = await getBookMeta(slug, locale, selectedFormat);
@@ -224,6 +246,29 @@ export default async function BookPage({
               {translate("product.buy")}
             </span>
             <div className="flex flex-wrap gap-2">
+              {isEntitled ? (
+                <div className="flex flex-col gap-2 rounded border border-slate-200 px-3 py-2">
+                  <span className="text-sm text-slate-700">
+                    {translate("product.youOwnThis")}
+                  </span>
+                  <div className="flex flex-wrap gap-2 text-sm">
+                    <a
+                      className="text-slate-700 hover:text-slate-900"
+                      href={`/api/reader/file?slug=${slug}&locale=${locale}&format=${selectedFormat}&asset=ebook`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {translate("product.openEbook")}
+                    </a>
+                    <a
+                      className="text-slate-700 hover:text-slate-900"
+                      href={`/api/reader/file?slug=${slug}&locale=${locale}&format=${selectedFormat}&asset=ebook&download=1`}
+                    >
+                      {translate("product.downloadEbook")}
+                    </a>
+                  </div>
+                </div>
+              ) : (
               <BuyBundleButton
                 locale={locale}
                 slug={slug}
@@ -232,6 +277,7 @@ export default async function BookPage({
                 loadingLabel={translate("common.loading")}
                 errorLabel={translate("common.error")}
               />
+              )}
               {assetItems.length > 0 ? (
                 assetItems.map(item => (
                   <button

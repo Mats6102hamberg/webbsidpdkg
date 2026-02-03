@@ -27,7 +27,10 @@
     "coverPlaceholder": "Omslag kommer snart",
     "a5ComingSoonNote": "A5 kommer snart.",
     "editionLabel": "Upplaga",
-    "buyBundle": "Köp digitalt paket"
+    "buyBundle": "Köp digitalt paket",
+    "youOwnThis": "Du äger denna bok",
+    "openEbook": "Öppna e-bok",
+    "downloadEbook": "Ladda ner e-bok"
   },
   "common": {
     "loading": "Laddar...",
@@ -66,7 +69,10 @@
     "title": "Ditt bibliotek",
     "subtitle": "Dina köpta digitala paket visas här.",
     "empty": "Du har inga köp ännu.",
-    "viewBook": "Visa"
+    "viewBook": "Visa",
+    "openEbook": "Öppna e-bok",
+    "downloadEbook": "Ladda ner e-bok",
+    "readInteractive": "Läs interaktivt"
   },
   "auth": {
     "invalidLinkTitle": "Länken är ogiltig",

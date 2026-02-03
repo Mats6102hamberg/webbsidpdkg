@@ -5,7 +5,7 @@ import { Readable } from "stream";
 import { sql } from "../../../../src/db/db";
 import { getSessionCookieName, verifySession } from "../../../../src/auth/session";
 import { isSupportedLocale } from "../../../../src/i18n/supportedLocales";
-import { resolveInteractiveAsset } from "../../../../src/bookVault/assets";
+import { resolveAsset, type AssetType } from "../../../../src/bookVault/assets";
 
 export const runtime = "nodejs";
 
@@ -24,6 +24,7 @@ export async function GET(req: Request) {
   const locale = (searchParams.get("locale") ?? "").trim();
   const format = (searchParams.get("format") ?? "").trim();
   const asset = (searchParams.get("asset") ?? "").trim();
+  const download = searchParams.get("download") ?? "";
 
   if (!slug || !/^[a-z0-9-]+$/.test(slug)) {
     return errorResponse("Ogiltig slug.");
@@ -37,9 +38,10 @@ export async function GET(req: Request) {
     return errorResponse("Ogiltigt format.");
   }
 
-  if (asset !== "interactive") {
+  if (asset !== "interactive" && asset !== "ebook") {
     return errorResponse("Ogiltig asset.");
   }
+  const assetType = asset as AssetType;
 
   const cookieStore = await cookies();
   const session = cookieStore.get(getSessionCookieName())?.value ?? "";
@@ -62,14 +64,20 @@ export async function GET(req: Request) {
     return errorResponse("Forbidden.", 403);
   }
 
-  const resolved = await resolveInteractiveAsset(slug, locale, format);
+  const resolved = await resolveAsset(slug, locale, format, assetType);
   if (!resolved) {
     return errorResponse("Not found.", 404);
   }
 
+  const isDownload = assetType === "ebook" && download === "1";
+  const filename = assetType === "ebook"
+    ? `${slug}-${locale}-${format}-ebook.pdf`
+    : `${slug}-interactive.pdf`;
+
   const headers = new Headers({
     "Cache-Control": "private, no-store",
-    "Content-Disposition": `inline; filename=\"${slug}-interactive.pdf\"`
+    "X-Content-Type-Options": "nosniff",
+    "Content-Disposition": `${isDownload ? "attachment" : "inline"}; filename=\"${filename}\"`
   });
 
   try {

@@ -90,12 +90,34 @@ export default async function LibraryPage({ params }: LibraryPageProps) {
                     {row.product_type} · {row.format}
                   </p>
                 </div>
-                <Link
-                  className="text-sm text-slate-700 hover:text-slate-900"
-                  href={`/${locale}/books/${row.slug}`}
-                >
-                  {translate("library.viewBook")}
-                </Link>
+                <div className="flex flex-wrap items-center gap-3 text-sm">
+                  <Link
+                    className="text-slate-700 hover:text-slate-900"
+                    href={`/${locale}/books/${row.slug}`}
+                  >
+                    {translate("library.viewBook")}
+                  </Link>
+                  <Link
+                    className="text-slate-700 hover:text-slate-900"
+                    href={`/${locale}/reader/${row.slug}`}
+                  >
+                    {translate("library.readInteractive")}
+                  </Link>
+                  <Link
+                    className="text-slate-700 hover:text-slate-900"
+                    href={`/api/reader/file?slug=${row.slug}&locale=${locale}&format=${row.format}&asset=ebook`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {translate("library.openEbook")}
+                  </Link>
+                  <Link
+                    className="text-slate-700 hover:text-slate-900"
+                    href={`/api/reader/file?slug=${row.slug}&locale=${locale}&format=${row.format}&asset=ebook&download=1`}
+                  >
+                    {translate("library.downloadEbook")}
+                  </Link>
+                </div>
               </li>
             ))}
           </ul>
