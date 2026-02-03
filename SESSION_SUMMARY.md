@@ -23,6 +23,7 @@
 - Stripe subscription: status-normalisering for app_access samt library-sektion for app-åtkomst.
 - Fix: Apps-sida typning uppdaterad for Next 15 PageProps (params/searchParams som Promise).
 - Fix: Apps-sida typning uppdaterad till minimal Next 15 checklista (params som Promise).
+- Fix: Auth verify-sida typning uppdaterad för Next 15 PageProps (params/searchParams som Promise).
 
 ## Nya filer och komponenter
 - `app/[locale]/books/[slug]/page.tsx`

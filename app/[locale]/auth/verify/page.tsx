@@ -8,12 +8,12 @@ import {
 } from "../../../../src/i18n/supportedLocales";
 
 type VerifyPageProps = {
-  params: { locale: string };
-  searchParams?: { reason?: string };
+  params: Promise<{ locale: string }>;
+  searchParams?: Promise<{ reason?: string }>;
 };
 
 export default async function VerifyPage({ params, searchParams }: VerifyPageProps) {
-  const { locale } = params;
+  const { locale } = await params;
 
   if (!isSupportedLocale(locale)) {
     redirect(`/${DEFAULT_LOCALE}`);
@@ -21,7 +21,8 @@ export default async function VerifyPage({ params, searchParams }: VerifyPagePro
 
   const messages = await getMessages(locale);
   const translate = t(messages);
-  const reason = searchParams?.reason ?? "";
+  const query = searchParams ? await searchParams : undefined;
+  const reason = query?.reason ?? "";
 
   const reasonLabel = ["missing", "invalid", "expired", "used"].includes(reason)
     ? reason
