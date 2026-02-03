@@ -30,7 +30,8 @@
     "buyBundle": "Buy digital bundle",
     "youOwnThis": "You own this book",
     "openEbook": "Open e-book",
-    "downloadEbook": "Download e-book"
+    "downloadEbook": "Download e-book",
+    "goToLibrary": "Go to My books"
   },
   "common": {
     "loading": "Loading...",
@@ -88,6 +89,7 @@
     "goToBook": "Go to book",
     "backToLibrary": "Back to library",
     "openInNewTab": "Open in new tab",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "openEbook": "Open e-book"
   }
 }

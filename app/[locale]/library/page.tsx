@@ -85,7 +85,14 @@ export default async function LibraryPage({ params }: LibraryPageProps) {
                 className="flex items-center justify-between rounded border border-slate-200 px-4 py-3"
               >
                 <div>
-                  <p className="text-sm font-medium">{row.slug}</p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm font-medium">{row.slug}</p>
+                    <span className="rounded bg-slate-100 px-2 py-0.5 text-xs text-slate-600">
+                      {row.format === "a5"
+                        ? translate("product.format_a5")
+                        : translate("product.format_standard")}
+                    </span>
+                  </div>
                   <p className="text-xs text-slate-500">
                     {row.product_type} · {row.format}
                   </p>

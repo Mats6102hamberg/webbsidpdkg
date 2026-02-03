@@ -266,6 +266,12 @@ export default async function BookPage({
                     >
                       {translate("product.downloadEbook")}
                     </a>
+                    <Link
+                      className="text-slate-700 hover:text-slate-900"
+                      href={`/${locale}/library`}
+                    >
+                      {translate("product.goToLibrary")}
+                    </Link>
                   </div>
                 </div>
               ) : (

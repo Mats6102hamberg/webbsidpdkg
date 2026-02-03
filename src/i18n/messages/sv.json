@@ -30,7 +30,8 @@
     "buyBundle": "Köp digitalt paket",
     "youOwnThis": "Du äger denna bok",
     "openEbook": "Öppna e-bok",
-    "downloadEbook": "Ladda ner e-bok"
+    "downloadEbook": "Ladda ner e-bok",
+    "goToLibrary": "Gå till Mina böcker"
   },
   "common": {
     "loading": "Laddar...",
@@ -88,6 +89,7 @@
     "goToBook": "Gå till boken",
     "backToLibrary": "Tillbaka till biblioteket",
     "openInNewTab": "Öppna i ny flik",
-    "loading": "Laddar..."
+    "loading": "Laddar...",
+    "openEbook": "Öppna e-bok"
   }
 }

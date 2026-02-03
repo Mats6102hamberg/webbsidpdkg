@@ -110,6 +110,14 @@ export default async function ReaderPage({ params, searchParams }: ReaderPagePro
           >
             {translate("reader.openInNewTab")}
           </a>
+          <a
+            className="text-sm text-slate-600 hover:text-slate-900"
+            href={`/api/reader/file?slug=${slug}&locale=${locale}&format=${format}&asset=ebook`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {translate("reader.openEbook")}
+          </a>
         </div>
         <ReaderFrame
           src={iframeSrc}
