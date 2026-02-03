@@ -10,6 +10,7 @@
 - UX: visade upplaga pa produktsidan och lade A5-coming-soon microcopy.
 - Stripe Phase 1: checkout API, success/cancel-sidor, och aktiv CTA for digitalt paket.
 - Stripe hardening: async headers-origin, referer fallback, apiVersion, och try/catch.
+- Dev logging for Stripe errors i checkout.
 
 ## Nya filer och komponenter
 - `app/[locale]/books/[slug]/page.tsx`
@@ -76,3 +77,4 @@
 - `582dcbc` (ux: a5 coming soon note + show edition)
 - `79726e4` (feat: stripe checkout phase 1)
 - `5fe34ea` (fix: stripe checkout origin and error handling)
+- `17795bc` (chore: log stripe checkout errors in dev)
