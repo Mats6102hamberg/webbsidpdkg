@@ -26,7 +26,8 @@
     "asset_print": "Print",
     "coverPlaceholder": "Cover coming soon",
     "a5ComingSoonNote": "A5 is coming soon.",
-    "editionLabel": "Edition"
+    "editionLabel": "Edition",
+    "buyBundle": "Buy digital bundle"
   },
   "common": {
     "loading": "Loading...",
@@ -44,5 +45,13 @@
     "th": "Thai",
     "da": "Danish",
     "it": "Italian"
+  },
+  "checkout": {
+    "successTitle": "Purchase complete",
+    "successBody": "Thanks for your purchase. You can access the digital bundle shortly.",
+    "backToBook": "Back to book",
+    "cancelTitle": "Checkout canceled",
+    "cancelBody": "No payment was made. You can try again when you are ready.",
+    "tryAgain": "Try again"
   }
 }

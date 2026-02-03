@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import BuyBundleButton from "../../../../components/BuyBundleButton";
 import Topbar from "../../../../components/Topbar";
 import {
   getBookMeta,
@@ -63,19 +64,14 @@ export default async function BookPage({
   if (!meta) {
     return (
       <div className="min-h-screen bg-white text-slate-900">
-        <header className="border-b border-slate-200">
-          <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
-            <Link className="text-sm text-slate-600 hover:text-slate-900" href={`/${locale}`}>
-              {translate("common.back")}
-            </Link>
-            <LanguageSwitcher
-              currentLocale={locale}
-              options={options}
-              label={translate("common.language")}
-              fallbackLocale={DEFAULT_LOCALE}
-            />
-          </div>
-        </header>
+        <Topbar
+          locale={locale}
+          backHref={`/${locale}`}
+          backLabel={translate("common.back")}
+          languageLabel={translate("common.language")}
+          fallbackLocale={DEFAULT_LOCALE}
+          options={options}
+        />
 
         <main className="mx-auto flex max-w-2xl flex-col gap-4 px-6 py-12">
           <h1 className="text-2xl font-semibold">
@@ -228,6 +224,14 @@ export default async function BookPage({
               {translate("product.buy")}
             </span>
             <div className="flex flex-wrap gap-2">
+              <BuyBundleButton
+                locale={locale}
+                slug={slug}
+                format={selectedFormat}
+                label={translate("product.buyBundle")}
+                loadingLabel={translate("common.loading")}
+                errorLabel={translate("common.error")}
+              />
               {assetItems.length > 0 ? (
                 assetItems.map(item => (
                   <button

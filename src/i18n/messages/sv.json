@@ -26,7 +26,8 @@
     "asset_print": "Tryck",
     "coverPlaceholder": "Omslag kommer snart",
     "a5ComingSoonNote": "A5 kommer snart.",
-    "editionLabel": "Upplaga"
+    "editionLabel": "Upplaga",
+    "buyBundle": "Köp digitalt paket"
   },
   "common": {
     "loading": "Laddar...",
@@ -44,5 +45,13 @@
     "th": "Thailandska",
     "da": "Danska",
     "it": "Italienska"
+  },
+  "checkout": {
+    "successTitle": "Köp klart",
+    "successBody": "Tack för ditt köp. Du får tillgång till det digitala paketet inom kort.",
+    "backToBook": "Tillbaka till boken",
+    "cancelTitle": "Köpet avbröts",
+    "cancelBody": "Ingen betalning gjordes. Du kan försöka igen när du vill.",
+    "tryAgain": "Försök igen"
   }
 }
