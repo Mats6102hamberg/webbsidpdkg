@@ -14,6 +14,7 @@
 - Stripe API svarar med stabila felkoder.
 - Stripe Phase 2: webhook-driven entitlements, magic link auth, og enkel Library sida.
 - Auth polish: invalid link-sida, logout, og product_type constraint.
+- Reader MVP: skyddad reader-sida och säker PDF-leverans via API.
 
 ## Nya filer och komponenter
 - `app/[locale]/books/[slug]/page.tsx`
@@ -23,17 +24,20 @@
 - `app/[locale]/login/page.tsx`
 - `app/[locale]/library/page.tsx`
 - `app/[locale]/auth/verify/page.tsx`
+- `app/[locale]/reader/[slug]/page.tsx`
 - `app/api/stripe/checkout/route.ts`
 - `app/api/stripe/webhook/route.ts`
 - `app/api/auth/request-link/route.ts`
 - `app/api/auth/verify/route.ts`
 - `app/api/auth/logout/route.ts`
+- `app/api/reader/file/route.ts`
 - `components/LanguageSwitcher.tsx`
 - `components/Topbar.tsx`
 - `components/BuyBundleButton.tsx`
 - `components/LoginForm.tsx`
 - `components/LogoutButton.tsx`
 - `src/bookVault/bookVault.ts`
+- `src/bookVault/assets.ts`
 - `src/i18n/getMessages.ts`
 - `src/i18n/t.ts`
 - `src/i18n/messages/en.json`
@@ -58,6 +62,7 @@
 - User: `/[locale]/login` visar magic link-formular.
 - User: `/[locale]/library` visar entitlements for inloggad e-post.
 - User: `/[locale]/auth/verify` visar felmeddelande for ogiltig/utgangen länk.
+- User: `/[locale]/reader/[slug]` visar interaktiv PDF om entitlement finns.
 - Admin: Stripe webhook skriver entitlements vid checkout.session.completed.
 
 ## Tekniska losningar och beslut
@@ -67,6 +72,7 @@
 - Stripe Checkout skapas via API route som validerar slug/locale/format og hanterar fel.
 - API svarar med stabil `code` for enklare UI-hantering.
 - Magic link auth anvander login_tokens med hashade tokens og httpOnly session cookie.
+- Reader API validerar session och entitlement innan PDF streamas/proxas.
 
 ## Environment variables
 - `BOOK_VAULT_MODE` (local | remote, default local)
@@ -94,6 +100,7 @@
 ## Risker eller begransningar
 - Webhook kravs for att skapa entitlements.
 - Magic link skickas bara till console i dev.
+- Reader kräver korrekt interactive.pdf pa Book Vault.
 
 ## Git commit-information
 - `3371b02` (step 0.7: outputFileTracingRoot)
@@ -109,3 +116,4 @@
 - `e3ed659` (feat: add stripe error codes)
 - `6ca7939` (feat: stripe webhook + magic link auth)
 - `2e08f39` (polish: invalid magic link handling + logout + product_type constraint)
+- `eb13f3c` (feat: protected reader + secure pdf delivery)
