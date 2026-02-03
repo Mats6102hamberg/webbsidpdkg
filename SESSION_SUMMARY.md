@@ -14,7 +14,8 @@
 - Stripe API svarar med stabila felkoder.
 - Stripe Phase 2: webhook-driven entitlements, magic link auth, og enkel Library sida.
 - Auth polish: invalid link-sida, logout, og product_type constraint.
-- Reader MVP: skyddad reader-sida och säker PDF-leverans via API.
+- Reader MVP: skyddad reader-sida og säker PDF-leverans via API.
+- Reader polish: loading overlay, open-in-new-tab, och dev-logging for saknad asset.
 
 ## Nya filer och komponenter
 - `app/[locale]/books/[slug]/page.tsx`
@@ -36,6 +37,7 @@
 - `components/BuyBundleButton.tsx`
 - `components/LoginForm.tsx`
 - `components/LogoutButton.tsx`
+- `components/ReaderFrame.tsx`
 - `src/bookVault/bookVault.ts`
 - `src/bookVault/assets.ts`
 - `src/i18n/getMessages.ts`
@@ -56,7 +58,7 @@
 - `db/schema.sql`
 
 ## Hur systemet fungerar (user + admin)
-- User: `/[locale]` visar startsida med locale-baserade texter och lank till bok.
+- User: `/[locale]` visar startsida med locale-baserade texter og lank till bok.
 - User: `/[locale]/books/[slug]` laser Book Vault meta og renderar produktdata samt aktivt Stripe CTA.
 - User: `/[locale]/checkout/success` og `/[locale]/checkout/cancel` visar checkout-resultat.
 - User: `/[locale]/login` visar magic link-formular.
@@ -72,7 +74,7 @@
 - Stripe Checkout skapas via API route som validerar slug/locale/format og hanterar fel.
 - API svarar med stabil `code` for enklare UI-hantering.
 - Magic link auth anvander login_tokens med hashade tokens og httpOnly session cookie.
-- Reader API validerar session och entitlement innan PDF streamas/proxas.
+- Reader API validerar session og entitlement innan PDF streamas/proxas.
 
 ## Environment variables
 - `BOOK_VAULT_MODE` (local | remote, default local)
@@ -117,3 +119,4 @@
 - `6ca7939` (feat: stripe webhook + magic link auth)
 - `2e08f39` (polish: invalid magic link handling + logout + product_type constraint)
 - `eb13f3c` (feat: protected reader + secure pdf delivery)
+- `51a401c` (polish: reader loading + dev missing-asset logs + open in new tab)
