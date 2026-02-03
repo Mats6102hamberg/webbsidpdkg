@@ -1,49 +1,36 @@
 # SESSION SUMMARY
 
-## Översikt av vad som implementerades
-- Skapade en minimal Next.js App Router-struktur med TypeScript och Tailwind.
-- Lade till en enkel testsida på `/sv` via dynamisk route `/[locale]`.
-- Förberedde tomma mappar för framtida `i18n` och `bookVault`.
+## Oversikt av vad som implementerades
+- Uppgraderade Next.js till senaste 15.x patch-version och uppdaterade lockfil.
+- Lade till root-redirect `/` -> `/sv` via App Router.
+- La in minimal i18n-skelett med `supportedLocales.ts`.
+- Uppdaterade README med minsta dev-instruktioner.
+- Korde `npm audit fix` (utan `--force`).
 
 ## Nya filer och komponenter
-- `app/layout.tsx`
-- `app/globals.css`
-- `app/[locale]/page.tsx`
-- `tailwind.config.ts`
-- `postcss.config.js`
-- `tsconfig.json`
-- `next.config.js`
-- `next-env.d.ts`
-- `package.json`
-- `components/.gitkeep`
-- `src/i18n/.gitkeep`
-- `src/bookVault/.gitkeep`
-- `README.md`
-- `.gitignore`
+- `app/page.tsx`
+- `src/i18n/supportedLocales.ts`
+- `package-lock.json`
 
 ## Hur systemet fungerar (user + admin)
 - Ej dokumenterat.
 
-## Tekniska lösningar och beslut
-- App Router används i `app/`.
-- Tailwind laddas via `app/globals.css`.
-- En dynamisk localesegment-route används för att nå `/sv`.
+## Tekniska losningar och beslut
+- Root-redirect implementerad med `redirect()` i App Router.
+- `SUPPORTED_LOCALES` och `DEFAULT_LOCALE` ligger i `src/i18n/supportedLocales.ts`.
 
 ## Environment variables
 - Ej dokumenterat.
 
-## Nästa steg / TODO
-- Installera npm-beroenden.
-- Skapa GitHub-repo och pusha.
-- Koppla till Vercel.
+## Nasta steg / TODO
+- Eventuell audit-uppgradering (moderat svarbarhet i Next.js kvarstar, se `npm audit`).
+- Koppla till Vercel (manuellt).
 
-## Vad som INTE gjordes (och varför)
-- `npm install` kördes inte på grund av blockerad nätverksåtkomst.
-- GitHub-repo skapades inte och push gjordes inte på grund av blockerad nätverksåtkomst.
-- `npm run dev` verifierades inte eftersom beroenden inte installerades.
+## Vad som INTE gjordes (och varfor)
+- `npm audit fix --force` korde inte eftersom det innebar breaking change till Next 16.
 
-## Risker eller begränsningar
-- Projektet kan inte köras förrän beroenden har installerats.
+## Risker eller begransningar
+- `npm audit` rapporterar en moderat svarbarhet i Next.js (kraver breaking change for full fix).
 
 ## Git commit-information
-- Senaste commit: `252a42a` (initial setup)
+- Senaste commit (funktionella andringar): `b3f681c` (step 0.6: patch next + root redirect + locales scaffold)
