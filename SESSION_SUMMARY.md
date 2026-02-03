@@ -151,3 +151,4 @@
 - `ff864fd` (fix: apps page props minimal pattern)
 - `9e0091e` (fix: verify page PageProps typing)
 - `ea34bfc` (ui: home landing page redesign)
+- `a425b7a` (ui: apps landing page redesign)
