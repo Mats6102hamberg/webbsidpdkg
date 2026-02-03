@@ -24,7 +24,9 @@
     "asset_ebook": "E-bok",
     "asset_interactive": "Interaktiv",
     "asset_print": "Tryck",
-    "coverPlaceholder": "Omslag kommer snart"
+    "coverPlaceholder": "Omslag kommer snart",
+    "a5ComingSoonNote": "A5 kommer snart.",
+    "editionLabel": "Upplaga"
   },
   "common": {
     "loading": "Laddar...",

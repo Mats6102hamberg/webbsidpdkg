@@ -159,6 +159,11 @@ export default async function BookPage({
             {meta.subtitle ? (
               <p className="mt-2 text-base text-slate-600">{meta.subtitle}</p>
             ) : null}
+            {meta.edition ? (
+              <p className="mt-2 text-sm text-slate-500">
+                {translate("product.editionLabel")}: {meta.edition}
+              </p>
+            ) : null}
           </div>
 
           {meta.description ? (
@@ -195,6 +200,11 @@ export default async function BookPage({
                 {translate("product.format_a5")} · {translate("product.comingSoonLocaleTitle")}
               </span>
             )}
+            {!hasA5 ? (
+              <span className="text-xs text-slate-500">
+                {translate("product.a5ComingSoonNote")}
+              </span>
+            ) : null}
           </div>
 
           <div className="flex flex-col gap-2">
