@@ -86,8 +86,11 @@ export async function POST(req: Request) {
         format
       }
     });
-  } catch {
-    return errorResponse("Stripe kunde inte skapa checkout-session.", 500);
+  } catch (err) {
+    if (process.env.NODE_ENV !== "production") {
+      console.error("Stripe checkout error:", err);
+    }
+    return errorResponse("Stripe checkout failed.", 500);
   }
 
   return Response.json({ url: session.url });
