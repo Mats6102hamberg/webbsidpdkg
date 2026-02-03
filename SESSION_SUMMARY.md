@@ -28,6 +28,9 @@
 - UI: Polerat bokkort på startsidan och uppdaterat Apps-sida till samma landing-stil.
 - UI: Standardiserad Apps-sidans query-parameter till `sub` för success/cancel.
 - Stripe Billing Portal: API-route, Manage Subscription-knapp och i18n för apps/library.
+- UI: Produkt-sidan ombyggd till butikslayout med hero, köpmodul, included och FAQ.
+- UI: Köpmodul polerad med badges, pris-hint och Stripe checkout-note.
+- I18n: Nya butikstexter och FAQ för produktsidan.
 
 ## Nya filer och komponenter
 - `app/[locale]/books/[slug]/page.tsx`
@@ -100,6 +103,7 @@
 - Stripe subscription skapar Checkout Session i mode subscription for inloggade användare.
 - Webhook hanterar app_access-entitlements och uppdaterar status vid subscription events.
 - Stripe Billing Portal skapas via subscription -> customer lookup och returnerar till /[locale]/apps.
+- Produktsidan använder SiteHeader/Container och visar purchase module, included-kort och FAQ.
 
 ## Environment variables
 - `BOOK_VAULT_MODE` (local | remote, default local)
@@ -158,3 +162,6 @@
 - `a425b7a` (ui: apps landing page redesign)
 - `c45793a` (ui: standardize apps query param)
 - `8ef4004` (feat: stripe billing portal)
+- `ae506d6` (ui: product page layout scaffold)
+- `b6d2b39` (ui: product purchase module polish)
+- `8661674` (i18n: product store copy + faq)
