@@ -74,5 +74,12 @@
     "requestNewLink": "Request new link",
     "logout": "Log out",
     "loggingOut": "Logging out..."
+  },
+  "reader": {
+    "title": "Interactive book",
+    "noAccessTitle": "No access",
+    "noAccessBody": "You do not have access to this interactive book.",
+    "goToBook": "Go to book",
+    "backToLibrary": "Back to library"
   }
 }

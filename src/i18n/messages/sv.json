@@ -74,5 +74,12 @@
     "requestNewLink": "Begär ny länk",
     "logout": "Logga ut",
     "loggingOut": "Loggar ut..."
+  },
+  "reader": {
+    "title": "Interaktiv bok",
+    "noAccessTitle": "Ingen åtkomst",
+    "noAccessBody": "Du har inte åtkomst till den här interaktiva boken.",
+    "goToBook": "Gå till boken",
+    "backToLibrary": "Tillbaka till biblioteket"
   }
 }
