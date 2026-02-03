@@ -90,6 +90,7 @@
     "backToLibrary": "Tillbaka till biblioteket",
     "openInNewTab": "Öppna i ny flik",
     "loading": "Laddar...",
-    "openEbook": "Öppna e-bok"
+    "openEbook": "Öppna e-bok",
+    "downloadEbook": "Ladda ner e-bok"
   }
 }

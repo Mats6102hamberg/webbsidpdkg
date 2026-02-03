@@ -267,7 +267,7 @@ export default async function BookPage({
                       {translate("product.downloadEbook")}
                     </a>
                     <Link
-                      className="text-slate-700 hover:text-slate-900"
+                      className="rounded bg-slate-900 px-3 py-1 text-xs font-medium text-white"
                       href={`/${locale}/library`}
                     >
                       {translate("product.goToLibrary")}

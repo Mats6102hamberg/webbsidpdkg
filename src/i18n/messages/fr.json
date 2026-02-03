@@ -90,6 +90,7 @@
     "backToLibrary": "Back to library",
     "openInNewTab": "Open in new tab",
     "loading": "Loading...",
-    "openEbook": "Open e-book"
+    "openEbook": "Open e-book",
+    "downloadEbook": "Download e-book"
   }
 }
