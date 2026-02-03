@@ -18,6 +18,7 @@
 - Reader polish: loading overlay, open-in-new-tab, og dev-logging for saknad asset.
 - E-book delivery: skyddad ebook via secure file route, bibliotekslankar och "du ager"-sektion.
 - UX polish: library CTA, format-badge, reader e-bokslänk.
+- UX polish: go-to-library button och reader e-bok download.
 
 ## Nya filer och komponenter
 - `app/[locale]/books/[slug]/page.tsx`
@@ -127,3 +128,4 @@
 - `51a401c` (polish: reader loading + dev missing-asset logs + open in new tab)
 - `7adf279` (feat: protected ebook delivery)
 - `0e2d393` (ux: library CTA + format badge + reader ebook link)
+- `d6346d2` (ux: library button CTA + reader ebook download)
