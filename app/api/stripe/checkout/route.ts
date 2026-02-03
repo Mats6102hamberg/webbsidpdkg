@@ -28,8 +28,8 @@ async function getOrigin() {
   return host ? `${proto}://${host}` : "";
 }
 
-function errorResponse(message: string, status = 400) {
-  return Response.json({ error: message }, { status });
+function errorResponse(message: string, code: string, status = 400) {
+  return Response.json({ error: message, code }, { status });
 }
 
 export async function POST(req: Request) {
@@ -37,6 +37,7 @@ export async function POST(req: Request) {
     const message = "Stripe env vars saknas. Set STRIPE_SECRET_KEY och STRIPE_PRICE_ID_BUNDLE.";
     return errorResponse(
       process.env.NODE_ENV === "production" ? "Stripe config missing." : message,
+      "STRIPE_CONFIG_MISSING",
       500
     );
   }
@@ -45,7 +46,7 @@ export async function POST(req: Request) {
   try {
     payload = await req.json();
   } catch {
-    return errorResponse("Ogiltig JSON payload.");
+    return errorResponse("Ogiltig JSON payload.", "INVALID_PAYLOAD");
   }
 
   const slug = (payload.slug ?? "").trim();
@@ -53,20 +54,20 @@ export async function POST(req: Request) {
   const format = (payload.format ?? "").trim();
 
   if (!slug || !/^[a-z0-9-]+$/.test(slug)) {
-    return errorResponse("Ogiltig slug.");
+    return errorResponse("Ogiltig slug.", "INVALID_SLUG");
   }
 
   if (!isSupportedLocale(locale)) {
-    return errorResponse("Ogiltig locale.");
+    return errorResponse("Ogiltig locale.", "INVALID_LOCALE");
   }
 
   if (format !== "standard" && format !== "a5") {
-    return errorResponse("Ogiltigt format.");
+    return errorResponse("Ogiltigt format.", "INVALID_FORMAT");
   }
 
   const origin = await getOrigin();
   if (!origin) {
-    return errorResponse("Origin saknas.", 500);
+    return errorResponse("Origin saknas.", "ORIGIN_MISSING", 500);
   }
 
   const stripe = new Stripe(stripeSecretKey, {
@@ -90,7 +91,7 @@ export async function POST(req: Request) {
     if (process.env.NODE_ENV !== "production") {
       console.error("Stripe checkout error:", err);
     }
-    return errorResponse("Stripe checkout failed.", 500);
+    return errorResponse("Stripe checkout failed.", "STRIPE_CHECKOUT_FAILED", 500);
   }
 
   return Response.json({ url: session.url });
