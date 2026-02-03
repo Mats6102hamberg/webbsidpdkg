@@ -9,6 +9,7 @@
 - Polish: svenska strangar, robust LanguageSwitcher, format-fallback, och Topbar-komponent.
 - UX: visade upplaga pa produktsidan och lade A5-coming-soon microcopy.
 - Stripe Phase 1: checkout API, success/cancel-sidor, och aktiv CTA for digitalt paket.
+- Stripe hardening: async headers-origin, referer fallback, apiVersion, och try/catch.
 
 ## Nya filer och komponenter
 - `app/[locale]/books/[slug]/page.tsx`
@@ -42,7 +43,7 @@
 - I18n laddas via dynamisk import av `messages/<locale>.json`.
 - Fallback till `en` om locale eller bokmetadata saknas.
 - Book Vault har local och remote mode styrt via env vars.
-- Stripe Checkout skapas via API route som validerar slug/locale/format.
+- Stripe Checkout skapas via API route som validerar slug/locale/format och hanterar fel.
 
 ## Environment variables
 - `BOOK_VAULT_MODE` (local | remote, default local)
@@ -74,3 +75,4 @@
 - `c1e83d3` (polish: sv strings + switcher robustness + format fallback)
 - `582dcbc` (ux: a5 coming soon note + show edition)
 - `79726e4` (feat: stripe checkout phase 1)
+- `5fe34ea` (fix: stripe checkout origin and error handling)
