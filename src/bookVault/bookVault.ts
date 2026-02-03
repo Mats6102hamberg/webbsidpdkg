@@ -1,4 +1,4 @@
-import { readFile, readdir } from "fs/promises";
+import { readFile } from "fs/promises";
 import path from "path";
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from "../i18n/supportedLocales";
 
