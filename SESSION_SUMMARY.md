@@ -157,3 +157,4 @@
 - `ea34bfc` (ui: home landing page redesign)
 - `a425b7a` (ui: apps landing page redesign)
 - `c45793a` (ui: standardize apps query param)
+- `8ef4004` (feat: stripe billing portal)
