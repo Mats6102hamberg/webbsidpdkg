@@ -7,6 +7,7 @@
 - Skapade sidor for home, produkt och coming soon med locale-baserad routing.
 - Lade till LanguageSwitcher som behaller aktuell path vid sprakkifte.
 - Polish: svenska strangar, robust LanguageSwitcher, format-fallback, och Topbar-komponent.
+- UX: visade upplaga pa produktsidan och lade A5-coming-soon microcopy.
 
 ## Nya filer och komponenter
 - `app/[locale]/books/[slug]/page.tsx`
@@ -60,3 +61,4 @@
 - `1766ec5` (chore: remove unused import)
 - `360ec00` (update session summary)
 - `c1e83d3` (polish: sv strings + switcher robustness + format fallback)
+- `582dcbc` (ux: a5 coming soon note + show edition)
