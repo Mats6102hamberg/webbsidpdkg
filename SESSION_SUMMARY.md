@@ -26,6 +26,7 @@
 - Fix: Auth verify-sida typning uppdaterad för Next 15 PageProps (params/searchParams som Promise).
 - UI: Ombyggd startsida med hero, värdekort och bokkort samt ny SiteHeader/Container.
 - UI: Polerat bokkort på startsidan och uppdaterat Apps-sida till samma landing-stil.
+- UI: Standardiserad Apps-sidans query-parameter till `sub` för success/cancel.
 
 ## Nya filer och komponenter
 - `app/[locale]/books/[slug]/page.tsx`

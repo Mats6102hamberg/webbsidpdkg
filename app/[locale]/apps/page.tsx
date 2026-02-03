@@ -18,7 +18,7 @@ const AUTH_SECRET = process.env.AUTH_SECRET;
 
 type AppsPageProps = {
   params: Promise<{ locale: string }>;
-  searchParams?: Promise<{ state?: string }>;
+  searchParams?: Promise<{ sub?: string }>;
 };
 
 export default async function AppsPage({ params, searchParams }: AppsPageProps) {
@@ -55,7 +55,7 @@ export default async function AppsPage({ params, searchParams }: AppsPageProps) 
   }
 
   const isActive = status === "active" || status === "trialing";
-  const subState = query?.state ?? "";
+  const subState = query?.sub ?? "";
 
   const navItems = [
     { key: translate("nav.books"), href: `/${locale}/books/petanque-dkg` },
