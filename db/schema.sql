@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS entitlements (
   user_email text NOT NULL,
   slug text NOT NULL,
   format text NOT NULL,
-  product_type text NOT NULL,
+  product_type text NOT NULL CHECK (product_type IN ('bundle')),
   stripe_session_id text UNIQUE NOT NULL,
   created_at timestamptz NOT NULL DEFAULT now()
 );

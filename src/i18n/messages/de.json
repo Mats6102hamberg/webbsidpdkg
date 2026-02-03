@@ -67,5 +67,12 @@
     "subtitle": "Your purchased digital bundles will appear here.",
     "empty": "You have no purchases yet.",
     "viewBook": "View"
+  },
+  "auth": {
+    "invalidLinkTitle": "Link expired or invalid",
+    "invalidLinkBody": "The login link is no longer valid. Request a new one.",
+    "requestNewLink": "Request new link",
+    "logout": "Log out",
+    "loggingOut": "Logging out..."
   }
 }

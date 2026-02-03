@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import LogoutButton from "../../../components/LogoutButton";
 import Topbar from "../../../components/Topbar";
 import { sql } from "../../../src/db/db";
 import { getMessages } from "../../../src/i18n/getMessages";
@@ -68,6 +69,11 @@ export default async function LibraryPage({ params }: LibraryPageProps) {
           <h1 className="text-2xl font-semibold">{translate("library.title")}</h1>
           <p className="mt-2 text-slate-600">{translate("library.subtitle")}</p>
         </div>
+        <LogoutButton
+          locale={locale}
+          label={translate("auth.logout")}
+          loadingLabel={translate("auth.loggingOut")}
+        />
 
         {entitlements.rows.length === 0 ? (
           <p className="text-sm text-slate-500">{translate("library.empty")}</p>

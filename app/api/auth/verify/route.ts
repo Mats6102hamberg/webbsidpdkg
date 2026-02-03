@@ -15,9 +15,11 @@ export async function GET(req: Request) {
   const token = searchParams.get("token") ?? "";
   const localeParam = searchParams.get("locale") ?? DEFAULT_LOCALE;
   const locale = isSupportedLocale(localeParam) ? localeParam : DEFAULT_LOCALE;
+  const failureUrl = new URL(`/${locale}/auth/verify`, req.url);
 
   if (!token) {
-    return Response.redirect(new URL(`/${locale}/login`, req.url));
+    failureUrl.searchParams.set("reason", "missing");
+    return Response.redirect(failureUrl);
   }
 
   const tokenHash = hashToken(token);
@@ -31,7 +33,8 @@ export async function GET(req: Request) {
   `;
 
   if (result.rows.length === 0) {
-    return Response.redirect(new URL(`/${locale}/login`, req.url));
+    failureUrl.searchParams.set("reason", "invalid");
+    return Response.redirect(failureUrl);
   }
 
   const row = result.rows[0] as {
@@ -42,7 +45,8 @@ export async function GET(req: Request) {
   };
 
   if (row.used_at || new Date(row.expires_at) < new Date()) {
-    return Response.redirect(new URL(`/${locale}/login`, req.url));
+    failureUrl.searchParams.set("reason", row.used_at ? "used" : "expired");
+    return Response.redirect(failureUrl);
   }
 
   await sql`

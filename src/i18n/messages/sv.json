@@ -67,5 +67,12 @@
     "subtitle": "Dina köpta digitala paket visas här.",
     "empty": "Du har inga köp ännu.",
     "viewBook": "Visa"
+  },
+  "auth": {
+    "invalidLinkTitle": "Länken är ogiltig",
+    "invalidLinkBody": "Inloggningslänken är inte längre giltig. Be om en ny.",
+    "requestNewLink": "Begär ny länk",
+    "logout": "Logga ut",
+    "loggingOut": "Loggar ut..."
   }
 }
