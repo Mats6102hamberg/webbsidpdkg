@@ -85,7 +85,8 @@
     "readInteractive": "Läs interaktivt",
     "appAccessTitle": "App-prenumeration",
     "appAccessActive": "Aktivt medlemskap",
-    "appAccessInactive": "Inget aktivt medlemskap"
+    "appAccessInactive": "Inget aktivt medlemskap",
+    "manageSubscription": "Hantera prenumeration"
   },
   "auth": {
     "invalidLinkTitle": "Länken är ogiltig",
@@ -117,6 +118,9 @@
     "value2Title": "Klubbhantering",
     "value2Body": "Samla medlemmar, event och resultat på ett ställe.",
     "value3Title": "Säsongsöversikt",
-    "value3Body": "Följ mål, form och tävlingskalender."
+    "value3Body": "Följ mål, form och tävlingskalender.",
+    "manageSubscription": "Hantera prenumeration",
+    "manageSubscriptionLoading": "Öppnar portal...",
+    "manageSubscriptionError": "Kunde inte öppna portalen."
   }
 }

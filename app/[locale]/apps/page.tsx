@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import Container from "../../../components/Container";
 import SiteHeader from "../../../components/SiteHeader";
 import StartSubscriptionButton from "../../../components/StartSubscriptionButton";
+import ManageSubscriptionButton from "../../../components/ManageSubscriptionButton";
 import { sql } from "../../../src/db/db";
 import { getMessages } from "../../../src/i18n/getMessages";
 import { t } from "../../../src/i18n/t";
@@ -120,6 +121,14 @@ export default async function AppsPage({ params, searchParams }: AppsPageProps) 
                   <p className="mt-2 text-sm text-emerald-800">
                     {translate("apps.subscribedBody")}
                   </p>
+                  <div className="mt-4">
+                    <ManageSubscriptionButton
+                      locale={locale}
+                      label={translate("apps.manageSubscription")}
+                      loadingLabel={translate("apps.manageSubscriptionLoading")}
+                      errorLabel={translate("apps.manageSubscriptionError")}
+                    />
+                  </div>
                 </div>
               ) : (
                 <div className="rounded-xl border border-slate-200 bg-white/80 p-5 shadow-sm">

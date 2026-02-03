@@ -27,6 +27,7 @@
 - UI: Ombyggd startsida med hero, värdekort och bokkort samt ny SiteHeader/Container.
 - UI: Polerat bokkort på startsidan och uppdaterat Apps-sida till samma landing-stil.
 - UI: Standardiserad Apps-sidans query-parameter till `sub` för success/cancel.
+- Stripe Billing Portal: API-route, Manage Subscription-knapp och i18n för apps/library.
 
 ## Nya filer och komponenter
 - `app/[locale]/books/[slug]/page.tsx`
@@ -53,6 +54,7 @@
 - `components/ReaderFrame.tsx`
 - `components/Container.tsx`
 - `components/SiteHeader.tsx`
+- `components/ManageSubscriptionButton.tsx`
 - `components/StartSubscriptionButton.tsx`
 - `src/bookVault/bookVault.ts`
 - `src/bookVault/assets.ts`
@@ -97,6 +99,7 @@
 - Ebook levereras via samma secure route med inline/attachment.
 - Stripe subscription skapar Checkout Session i mode subscription for inloggade användare.
 - Webhook hanterar app_access-entitlements och uppdaterar status vid subscription events.
+- Stripe Billing Portal skapas via subscription -> customer lookup och returnerar till /[locale]/apps.
 
 ## Environment variables
 - `BOOK_VAULT_MODE` (local | remote, default local)

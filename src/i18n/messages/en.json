@@ -85,7 +85,8 @@
     "readInteractive": "Read interactive",
     "appAccessTitle": "App subscription",
     "appAccessActive": "Active membership",
-    "appAccessInactive": "No active membership"
+    "appAccessInactive": "No active membership",
+    "manageSubscription": "Manage subscription"
   },
   "auth": {
     "invalidLinkTitle": "Link expired or invalid",
@@ -117,6 +118,9 @@
     "value2Title": "Club management",
     "value2Body": "Keep members, events, and results in one place.",
     "value3Title": "Season overview",
-    "value3Body": "Track goals, readiness, and competition schedules."
+    "value3Body": "Track goals, readiness, and competition schedules.",
+    "manageSubscription": "Manage subscription",
+    "manageSubscriptionLoading": "Opening portal...",
+    "manageSubscriptionError": "Could not open portal."
   }
 }

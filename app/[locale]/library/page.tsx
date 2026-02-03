@@ -2,6 +2,7 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import LogoutButton from "../../../components/LogoutButton";
+import ManageSubscriptionButton from "../../../components/ManageSubscriptionButton";
 import Topbar from "../../../components/Topbar";
 import { sql } from "../../../src/db/db";
 import { getMessages } from "../../../src/i18n/getMessages";
@@ -16,11 +17,11 @@ import { getSessionCookieName, verifySession } from "../../../src/auth/session";
 const AUTH_SECRET = process.env.AUTH_SECRET;
 
 type LibraryPageProps = {
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 };
 
 export default async function LibraryPage({ params }: LibraryPageProps) {
-  const { locale } = await params;
+  const { locale } = params;
 
   if (!isSupportedLocale(locale)) {
     redirect(`/${DEFAULT_LOCALE}`);
@@ -96,14 +97,24 @@ export default async function LibraryPage({ params }: LibraryPageProps) {
               ? translate("library.appAccessActive")
               : translate("library.appAccessInactive")}
           </p>
-          {!appActive ? (
+          {appActive ? (
+            <div className="mt-3">
+              <ManageSubscriptionButton
+                locale={locale}
+                label={translate("library.manageSubscription")}
+                loadingLabel={translate("apps.manageSubscriptionLoading")}
+                errorLabel={translate("apps.manageSubscriptionError")}
+                className="rounded-full border border-slate-300 px-5 py-2 text-sm font-semibold text-slate-800"
+              />
+            </div>
+          ) : (
             <Link
               className="mt-3 inline-flex text-sm text-slate-700 hover:text-slate-900"
               href={`/${locale}/apps`}
             >
               {translate("apps.startSubscription")}
             </Link>
-          ) : null}
+          )}
         </section>
 
         {entitlements.rows.length === 0 ? (
