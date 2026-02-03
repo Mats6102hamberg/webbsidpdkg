@@ -7,7 +7,16 @@
   },
   "home": {
     "title": "Petanque DKG",
-    "subtitle": "Den kompletta guiden till petanque."
+    "subtitle": "Den kompletta guiden till petanque.",
+    "primaryCta": "Se boken",
+    "secondaryCtaLibrary": "Mina böcker",
+    "secondaryCtaLogin": "Logga in",
+    "value1Title": "Interaktiv bok",
+    "value1Body": "Läs den interaktiva utgåvan med anteckningar, taktik och övningar.",
+    "value2Title": "E-bok att ladda ner",
+    "value2Body": "Ladda ner e-boken och läs offline på valfri enhet.",
+    "value3Title": "App-prenumeration",
+    "value3Body": "Lås upp Boule Apps med träningsverktyg och säsongsplanering."
   },
   "product": {
     "buy": "Köp",

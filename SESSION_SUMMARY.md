@@ -24,6 +24,7 @@
 - Fix: Apps-sida typning uppdaterad for Next 15 PageProps (params/searchParams som Promise).
 - Fix: Apps-sida typning uppdaterad till minimal Next 15 checklista (params som Promise).
 - Fix: Auth verify-sida typning uppdaterad för Next 15 PageProps (params/searchParams som Promise).
+- UI: Ombyggd startsida med hero, värdekort och bokkort samt ny SiteHeader/Container.
 
 ## Nya filer och komponenter
 - `app/[locale]/books/[slug]/page.tsx`
@@ -48,6 +49,8 @@
 - `components/LoginForm.tsx`
 - `components/LogoutButton.tsx`
 - `components/ReaderFrame.tsx`
+- `components/Container.tsx`
+- `components/SiteHeader.tsx`
 - `components/StartSubscriptionButton.tsx`
 - `src/bookVault/bookVault.ts`
 - `src/bookVault/assets.ts`
@@ -84,6 +87,7 @@
 - Fallback till `en` om locale eller bokmetadata saknas.
 - Book Vault har local og remote mode styrt via env vars.
 - Stripe Checkout skapas via API route som validerar slug/locale/format og hanterar fel.
+- Startsidan hämtar Book Vault metadata för att visa titel/subtitel/upplaga i bokkort.
 - API svarar med stabil `code` for enklare UI-hantering.
 - Magic link auth anvander login_tokens med hashade tokens og httpOnly session cookie.
 - Reader API validerar session og entitlement innan PDF streamas/proxas.

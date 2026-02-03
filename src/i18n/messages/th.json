@@ -7,7 +7,16 @@
   },
   "home": {
     "title": "Petanque DKG",
-    "subtitle": "The complete guide to petanque."
+    "subtitle": "The complete guide to petanque.",
+    "primaryCta": "See the book",
+    "secondaryCtaLibrary": "My books",
+    "secondaryCtaLogin": "Sign in",
+    "value1Title": "Interactive book",
+    "value1Body": "Read the full interactive edition with notes, tactics, and drills.",
+    "value2Title": "E-book download",
+    "value2Body": "Download the e-book and read offline on any device.",
+    "value3Title": "Apps subscription",
+    "value3Body": "Unlock Boule Apps with training tools and season planning."
   },
   "product": {
     "buy": "Buy",
