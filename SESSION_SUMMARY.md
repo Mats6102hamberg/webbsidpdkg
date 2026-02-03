@@ -153,3 +153,4 @@
 - `9e0091e` (fix: verify page PageProps typing)
 - `ea34bfc` (ui: home landing page redesign)
 - `a425b7a` (ui: apps landing page redesign)
+- `c45793a` (ui: standardize apps query param)
