@@ -28,14 +28,22 @@ export default function LanguageSwitcher({
       ? nextLocale
       : fallbackLocale;
 
-    const parts = pathname.split("/");
-    if (parts.length > 1) {
-      parts[1] = target;
-    } else {
-      parts.push(target);
+    if (!pathname || pathname === "/") {
+      startTransition(() => {
+        router.push(`/${target}`);
+      });
+      document.cookie = `locale=${target}; path=/; max-age=31536000`;
+      return;
     }
 
-    const nextPath = parts.join("/") || "/";
+    const parts = pathname.split("/").filter(Boolean);
+    if (parts.length === 0) {
+      parts.push(target);
+    } else {
+      parts[0] = target;
+    }
+
+    const nextPath = `/${parts.join("/")}`;
 
     document.cookie = `locale=${target}; path=/; max-age=31536000`;
 

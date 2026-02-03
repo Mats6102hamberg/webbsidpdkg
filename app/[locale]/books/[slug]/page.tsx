@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import LanguageSwitcher from "../../../../components/LanguageSwitcher";
+import Topbar from "../../../../components/Topbar";
 import {
   getBookMeta,
   listAvailableFormats,
@@ -96,13 +96,14 @@ export default async function BookPage({
     );
   }
 
-  let availableFormats = await listAvailableFormats(slug, locale);
-  if (!availableFormats.length && locale !== DEFAULT_LOCALE) {
-    availableFormats = await listAvailableFormats(slug, DEFAULT_LOCALE);
-  }
+  const formatsForLocale = await listAvailableFormats(slug, locale);
+  const fallbackFormats =
+    !formatsForLocale.length && locale !== DEFAULT_LOCALE
+      ? await listAvailableFormats(slug, DEFAULT_LOCALE)
+      : formatsForLocale;
 
-  const hasStandard = availableFormats.includes("standard");
-  const hasA5 = availableFormats.includes("a5");
+  const hasStandard = fallbackFormats.includes("standard");
+  const hasA5 = formatsForLocale.includes("a5");
 
   const mode = process.env.BOOK_VAULT_MODE ?? "local";
   const baseUrl = process.env.BOOK_VAULT_BASE_URL
@@ -126,19 +127,14 @@ export default async function BookPage({
 
   return (
     <div className="min-h-screen bg-white text-slate-900">
-      <header className="border-b border-slate-200">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-          <Link className="text-sm text-slate-600 hover:text-slate-900" href={`/${locale}`}>
-            {translate("common.back")}
-          </Link>
-          <LanguageSwitcher
-            currentLocale={locale}
-            options={options}
-            label={translate("common.language")}
-            fallbackLocale={DEFAULT_LOCALE}
-          />
-        </div>
-      </header>
+      <Topbar
+        locale={locale}
+        backHref={`/${locale}`}
+        backLabel={translate("common.back")}
+        languageLabel={translate("common.language")}
+        fallbackLocale={DEFAULT_LOCALE}
+        options={options}
+      />
 
       <main className="mx-auto grid max-w-5xl gap-8 px-6 py-10 lg:grid-cols-[320px_1fr]">
         <div className="rounded border border-slate-200 bg-slate-50 p-4">

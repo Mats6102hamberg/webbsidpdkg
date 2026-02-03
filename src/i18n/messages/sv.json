@@ -1,6 +1,6 @@
 {
   "nav": {
-    "books": "Bocker",
+    "books": "Böcker",
     "apps": "Appar",
     "library": "Bibliotek",
     "about": "Om"
@@ -10,7 +10,7 @@
     "subtitle": "Den kompletta guiden till petanque."
   },
   "product": {
-    "buy": "Kop",
+    "buy": "Köp",
     "format": "Format",
     "format_standard": "Standard",
     "format_a5": "A5",
@@ -19,7 +19,7 @@
     "type_ebook": "E-bok",
     "type_bundle": "Paket",
     "comingSoonLocaleTitle": "Kommer snart",
-    "comingSoonLocaleBody": "Innehallet finns inte pa ditt sprak annu.",
+    "comingSoonLocaleBody": "Innehållet finns inte på ditt språk ännu.",
     "switchToEnglish": "Byt till engelska",
     "asset_ebook": "E-bok",
     "asset_interactive": "Interaktiv",
@@ -28,9 +28,9 @@
   },
   "common": {
     "loading": "Laddar...",
-    "error": "Nagot gick fel.",
+    "error": "Något gick fel.",
     "back": "Tillbaka",
-    "language": "Sprak"
+    "language": "Språk"
   },
   "locales": {
     "sv": "Svenska",
