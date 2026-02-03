@@ -8,6 +8,31 @@ function errorResponse(message: string, status = 400) {
   return new Response(message, { status });
 }
 
+type EntitlementStatus =
+  | "active"
+  | "past_due"
+  | "canceled"
+  | "incomplete"
+  | string;
+
+function mapStripeStatus(status: string): EntitlementStatus {
+  switch (status) {
+    case "active":
+    case "trialing":
+      return "active";
+    case "past_due":
+    case "unpaid":
+      return "past_due";
+    case "canceled":
+      return "canceled";
+    case "incomplete":
+    case "incomplete_expired":
+      return "incomplete";
+    default:
+      return status;
+  }
+}
+
 export async function POST(req: Request) {
   if (!stripeSecretKey || !webhookSecret) {
     return errorResponse("Stripe webhook config missing.", 500);
@@ -39,14 +64,101 @@ export async function POST(req: Request) {
     const email = session.customer_details?.email ?? session.customer_email ?? null;
     const slug = session.metadata?.slug ?? null;
     const format = session.metadata?.format ?? null;
+    const isSubscription =
+      session.mode === "subscription" || session.metadata?.product_type === "app_access";
 
-    if (email && slug && format) {
+    if (isSubscription && email) {
+      const subscriptionId =
+        typeof session.subscription === "string"
+          ? session.subscription
+          : session.subscription?.id ?? null;
+      const status = mapStripeStatus("active");
+
+      if (subscriptionId) {
+        const updated = await sql`
+          UPDATE entitlements
+          SET
+            user_email = ${email},
+            slug = 'boule-apps',
+            format = 'standard',
+            product_type = 'app_access',
+            status = ${status}
+          WHERE stripe_subscription_id = ${subscriptionId}
+          RETURNING id
+        `;
+
+        if (updated.rows.length === 0) {
+          await sql`
+            INSERT INTO entitlements (
+              user_email,
+              slug,
+              format,
+              product_type,
+              stripe_session_id,
+              stripe_subscription_id,
+              status
+            )
+            VALUES (
+              ${email},
+              'boule-apps',
+              'standard',
+              'app_access',
+              ${session.id},
+              ${subscriptionId},
+              ${status}
+            )
+            ON CONFLICT (stripe_session_id) DO UPDATE SET
+              stripe_subscription_id = EXCLUDED.stripe_subscription_id,
+              status = EXCLUDED.status
+          `;
+        }
+      } else {
+        await sql`
+          INSERT INTO entitlements (
+            user_email,
+            slug,
+            format,
+            product_type,
+            stripe_session_id,
+            stripe_subscription_id,
+            status
+          )
+          VALUES (
+            ${email},
+            'boule-apps',
+            'standard',
+            'app_access',
+            ${session.id},
+            ${subscriptionId},
+            ${status}
+          )
+          ON CONFLICT (stripe_session_id) DO UPDATE SET
+            stripe_subscription_id = EXCLUDED.stripe_subscription_id,
+            status = EXCLUDED.status
+        `;
+      }
+    }
+
+    if (!isSubscription && email && slug && format) {
       await sql`
         INSERT INTO entitlements (user_email, slug, format, product_type, stripe_session_id)
         VALUES (${email}, ${slug}, ${format}, 'bundle', ${session.id})
         ON CONFLICT (stripe_session_id) DO NOTHING
       `;
     }
+  }
+
+  if (
+    event.type === "customer.subscription.updated" ||
+    event.type === "customer.subscription.deleted"
+  ) {
+    const subscription = event.data.object as Stripe.Subscription;
+    const status = mapStripeStatus(subscription.status);
+    await sql`
+      UPDATE entitlements
+      SET status = ${status}
+      WHERE stripe_subscription_id = ${subscription.id}
+    `;
   }
 
   return new Response("OK", { status: 200 });

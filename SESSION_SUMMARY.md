@@ -19,6 +19,8 @@
 - E-book delivery: skyddad ebook via secure file route, bibliotekslankar och "du ager"-sektion.
 - UX polish: library CTA, format-badge, reader e-bokslänk.
 - UX polish: go-to-library button och reader e-bok download.
+- Stripe subscription: checkout for Boule Apps, apps-sida, och app_access-entitlements via webhook.
+- Stripe subscription: status-normalisering for app_access samt library-sektion for app-åtkomst.
 
 ## Nya filer och komponenter
 - `app/[locale]/books/[slug]/page.tsx`
@@ -29,7 +31,9 @@
 - `app/[locale]/library/page.tsx`
 - `app/[locale]/auth/verify/page.tsx`
 - `app/[locale]/reader/[slug]/page.tsx`
+- `app/[locale]/apps/page.tsx`
 - `app/api/stripe/checkout/route.ts`
+- `app/api/stripe/subscription/checkout/route.ts`
 - `app/api/stripe/webhook/route.ts`
 - `app/api/auth/request-link/route.ts`
 - `app/api/auth/verify/route.ts`
@@ -41,6 +45,7 @@
 - `components/LoginForm.tsx`
 - `components/LogoutButton.tsx`
 - `components/ReaderFrame.tsx`
+- `components/StartSubscriptionButton.tsx`
 - `src/bookVault/bookVault.ts`
 - `src/bookVault/assets.ts`
 - `src/i18n/getMessages.ts`
@@ -80,6 +85,8 @@
 - Magic link auth anvander login_tokens med hashade tokens og httpOnly session cookie.
 - Reader API validerar session og entitlement innan PDF streamas/proxas.
 - Ebook levereras via samma secure route med inline/attachment.
+- Stripe subscription skapar Checkout Session i mode subscription for inloggade användare.
+- Webhook hanterar app_access-entitlements och uppdaterar status vid subscription events.
 
 ## Environment variables
 - `BOOK_VAULT_MODE` (local | remote, default local)
@@ -89,6 +96,7 @@
 - `STRIPE_SECRET_KEY`
 - `STRIPE_WEBHOOK_SECRET`
 - `STRIPE_PRICE_ID_BUNDLE`
+- `STRIPE_PRICE_ID_APP_SUB`
 - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` (valfri)
 - `DATABASE_URL`
 - `AUTH_SECRET`

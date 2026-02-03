@@ -73,7 +73,10 @@
     "viewBook": "Visa",
     "openEbook": "Öppna e-bok",
     "downloadEbook": "Ladda ner e-bok",
-    "readInteractive": "Läs interaktivt"
+    "readInteractive": "Läs interaktivt",
+    "appAccessTitle": "App-prenumeration",
+    "appAccessActive": "Aktivt medlemskap",
+    "appAccessInactive": "Inget aktivt medlemskap"
   },
   "auth": {
     "invalidLinkTitle": "Länken är ogiltig",
@@ -92,5 +95,13 @@
     "loading": "Laddar...",
     "openEbook": "Öppna e-bok",
     "downloadEbook": "Ladda ner e-bok"
+  },
+  "apps": {
+    "title": "Boule Apps",
+    "subtitle": "Få full tillgång till Boule Apps med ett medlemskap.",
+    "startSubscription": "Starta prenumeration",
+    "subscribedTitle": "Prenumerationen är aktiv",
+    "subscribedBody": "Du har redan tillgång till Boule Apps.",
+    "loginRequired": "Logga in för att starta en prenumeration."
   }
 }

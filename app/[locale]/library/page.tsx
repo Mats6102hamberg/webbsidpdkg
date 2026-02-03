@@ -50,8 +50,20 @@ export default async function LibraryPage({ params }: LibraryPageProps) {
     SELECT id, slug, format, product_type
     FROM entitlements
     WHERE user_email = ${email}
+      AND product_type = 'bundle'
     ORDER BY created_at DESC
   `;
+
+  const appAccess = await sql`
+    SELECT status
+    FROM entitlements
+    WHERE user_email = ${email}
+      AND product_type = 'app_access'
+    ORDER BY created_at DESC
+    LIMIT 1
+  `;
+  const appStatus = appAccess.rows[0]?.status ?? null;
+  const appActive = appStatus === "active" || appStatus === "trialing";
 
   return (
     <div className="min-h-screen bg-white text-slate-900">
@@ -74,6 +86,25 @@ export default async function LibraryPage({ params }: LibraryPageProps) {
           label={translate("auth.logout")}
           loadingLabel={translate("auth.loggingOut")}
         />
+
+        <section className="rounded border border-slate-200 px-4 py-4">
+          <h2 className="text-sm font-semibold text-slate-900">
+            {translate("library.appAccessTitle")}
+          </h2>
+          <p className="mt-1 text-sm text-slate-600">
+            {appActive
+              ? translate("library.appAccessActive")
+              : translate("library.appAccessInactive")}
+          </p>
+          {!appActive ? (
+            <Link
+              className="mt-3 inline-flex text-sm text-slate-700 hover:text-slate-900"
+              href={`/${locale}/apps`}
+            >
+              {translate("apps.startSubscription")}
+            </Link>
+          ) : null}
+        </section>
 
         {entitlements.rows.length === 0 ? (
           <p className="text-sm text-slate-500">{translate("library.empty")}</p>

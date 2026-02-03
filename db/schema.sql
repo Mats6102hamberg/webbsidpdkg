@@ -20,9 +20,12 @@ CREATE TABLE IF NOT EXISTS entitlements (
   user_email text NOT NULL,
   slug text NOT NULL,
   format text NOT NULL,
-  product_type text NOT NULL CHECK (product_type IN ('bundle')),
+  product_type text NOT NULL CHECK (product_type IN ('bundle', 'app_access')),
   stripe_session_id text UNIQUE NOT NULL,
+  stripe_subscription_id text UNIQUE,
+  status text,
   created_at timestamptz NOT NULL DEFAULT now()
 );
 
 CREATE INDEX IF NOT EXISTS entitlements_user_email_idx ON entitlements(user_email);
+CREATE INDEX IF NOT EXISTS entitlements_stripe_subscription_idx ON entitlements(stripe_subscription_id);

@@ -73,7 +73,10 @@
     "viewBook": "View",
     "openEbook": "Open e-book",
     "downloadEbook": "Download e-book",
-    "readInteractive": "Read interactive"
+    "readInteractive": "Read interactive",
+    "appAccessTitle": "App subscription",
+    "appAccessActive": "Active membership",
+    "appAccessInactive": "No active membership"
   },
   "auth": {
     "invalidLinkTitle": "Link expired or invalid",
@@ -92,5 +95,13 @@
     "loading": "Loading...",
     "openEbook": "Open e-book",
     "downloadEbook": "Download e-book"
+  },
+  "apps": {
+    "title": "Boule Apps",
+    "subtitle": "Get full access to Boule Apps with a membership.",
+    "startSubscription": "Start subscription",
+    "subscribedTitle": "Subscription active",
+    "subscribedBody": "You already have access to Boule Apps.",
+    "loginRequired": "Sign in to start a subscription."
   }
 }
