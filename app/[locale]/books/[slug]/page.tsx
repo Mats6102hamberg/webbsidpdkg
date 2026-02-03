@@ -258,18 +258,31 @@ export default async function BookPage({
               </div>
 
               <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-lg">
-                <h2 className="text-sm font-semibold text-slate-900">
-                  {translate("product.purchaseTitle")}
-                </h2>
+                <div className="flex flex-wrap items-center gap-2">
+                  <h2 className="text-sm font-semibold text-slate-900">
+                    {translate("product.purchaseTitle")}
+                  </h2>
+                  {meta.edition ? (
+                    <span className="rounded-full border border-slate-200 px-2 py-0.5 text-[11px] text-slate-500">
+                      {translate("product.editionLabel")}: {meta.edition}
+                    </span>
+                  ) : null}
+                  <span className="rounded-full border border-slate-200 px-2 py-0.5 text-[11px] text-slate-500">
+                    {translate(`product.format_${selectedFormat}`)}
+                  </span>
+                </div>
+                <p className="mt-2 text-xs text-slate-500">
+                  {translate("product.priceHint")}
+                </p>
                 <div className="mt-4 flex flex-col gap-3">
                   {isEntitled ? (
-                    <div className="flex flex-col gap-2 rounded-xl border border-slate-200 px-3 py-3">
+                    <div className="flex flex-col gap-3 rounded-xl border border-slate-200 px-3 py-3">
                       <span className="text-sm text-slate-700">
                         {translate("product.youOwnThis")}
                       </span>
                       <div className="flex flex-wrap gap-2 text-sm">
                         <a
-                          className="text-slate-700 hover:text-slate-900"
+                          className="rounded-full border border-slate-300 px-4 py-1.5 text-xs font-semibold text-slate-700"
                           href={`/api/reader/file?slug=${slug}&locale=${locale}&format=${selectedFormat}&asset=ebook`}
                           target="_blank"
                           rel="noreferrer"
@@ -277,18 +290,24 @@ export default async function BookPage({
                           {translate("product.openEbook")}
                         </a>
                         <a
-                          className="text-slate-700 hover:text-slate-900"
+                          className="rounded-full border border-slate-300 px-4 py-1.5 text-xs font-semibold text-slate-700"
                           href={`/api/reader/file?slug=${slug}&locale=${locale}&format=${selectedFormat}&asset=ebook&download=1`}
                         >
                           {translate("product.downloadEbook")}
                         </a>
                         <Link
-                          className="rounded bg-slate-900 px-3 py-1 text-xs font-medium text-white"
+                          className="rounded-full bg-slate-900 px-4 py-1.5 text-xs font-semibold text-white"
                           href={`/${locale}/library`}
                         >
                           {translate("product.goToLibrary")}
                         </Link>
                       </div>
+                      <Link
+                        className="text-xs text-slate-500 hover:text-slate-700"
+                        href={`/${locale}/reader/${slug}`}
+                      >
+                        {translate("reader.openInNewTab")}
+                      </Link>
                     </div>
                   ) : (
                     <BuyBundleButton
@@ -320,6 +339,9 @@ export default async function BookPage({
                     </span>
                   )}
                 </div>
+                <p className="mt-4 text-xs text-slate-500">
+                  {translate("product.secureCheckoutNote")}
+                </p>
               </div>
             </aside>
           </section>
