@@ -31,6 +31,7 @@
 - UI: Produkt-sidan ombyggd till butikslayout med hero, köpmodul, included och FAQ.
 - UI: Köpmodul polerad med badges, pris-hint och Stripe checkout-note.
 - I18n: Nya butikstexter och FAQ för produktsidan.
+- UI: Apps CTA tydligare med primärknapp och Stripe-trust line.
 
 ## Nya filer och komponenter
 - `app/[locale]/books/[slug]/page.tsx`
@@ -165,3 +166,4 @@
 - `ae506d6` (ui: product page layout scaffold)
 - `b6d2b39` (ui: product purchase module polish)
 - `8661674` (i18n: product store copy + faq)
+- `a40951a` (feat: apps CTA trust line + stronger primary style)
