@@ -6,12 +6,13 @@
 - Implementerade Book Vault-integration med lokal och remote mode.
 - Skapade sidor for home, produkt och coming soon med locale-baserad routing.
 - Lade till LanguageSwitcher som behaller aktuell path vid sprakkifte.
-- Rensade oanvand import i Book Vault.
+- Polish: svenska strangar, robust LanguageSwitcher, format-fallback, och Topbar-komponent.
 
 ## Nya filer och komponenter
 - `app/[locale]/books/[slug]/page.tsx`
 - `app/[locale]/coming-soon/page.tsx`
 - `components/LanguageSwitcher.tsx`
+- `components/Topbar.tsx`
 - `src/bookVault/bookVault.ts`
 - `src/i18n/getMessages.ts`
 - `src/i18n/t.ts`
@@ -34,6 +35,7 @@
 - I18n laddas via dynamisk import av `messages/<locale>.json`.
 - Fallback till `en` om locale eller bokmetadata saknas.
 - Book Vault har local och remote mode styrt via env vars.
+- Topbar ateranvands for back-lank + sprakkontroll.
 
 ## Environment variables
 - `BOOK_VAULT_MODE` (local | remote, default local)
@@ -56,3 +58,5 @@
 - `0dece5e` (i18n and book vault integration)
 - `87d4931` (update session summary and memory note)
 - `1766ec5` (chore: remove unused import)
+- `360ec00` (update session summary)
+- `c1e83d3` (polish: sv strings + switcher robustness + format fallback)
